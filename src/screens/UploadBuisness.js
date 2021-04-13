@@ -7,8 +7,12 @@ import {
   StyleSheet,
   ScrollView,
   Image,
+  Pressable,
+  Platform
 } from "react-native";
-// import * as ImagePicker from 'expo-image-picker'
+import { connect } from "react-redux";
+import * as ImagePicker from 'expo-image-picker'
+import { uploadBusiness } from "../redux/actions"
 
 class UploadBuisness extends Component {
   constructor(props) {
@@ -17,10 +21,44 @@ class UploadBuisness extends Component {
       fullName: "",
       // LastName:"",
       // email: "",
-      buisnessName: "",
+      name: "",
+      image: require("../../assets/logo.png"),
       products: "",
       rate: "",
     };
+  }
+
+  handleUpdateState(key, value) {
+    this.setState({[key]: value})
+  }
+
+  async componentDidMount() {
+    if (Platform.OS !== 'web') {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      }
+    }
+  }
+  
+  pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    // console.log(result);
+
+    if (!result.cancelled) {
+      this.handleUpdateState("image", {uri: result.uri});
+    }
+  };
+
+  handleBusinessUpload = () => {
+    this.props.uploadBusiness(this.state)
+    this.props.navigation.navigate("AllBuisness")
   }
 
   render() {
@@ -32,16 +70,18 @@ class UploadBuisness extends Component {
         </View>
         <View>
           <Text>profil picture</Text>
-          <Image
-            style={styles.image}
-            source={require("../../assets/logo.png")}
-          />
+          <Pressable onPress={this.pickImage}>
+            <Image
+              style={styles.image}
+              source={this.state.image}
+            />
+          </Pressable>
         </View>
         <View>
           <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
-            placeholder="FullName"
+            placeholder="Full name"
             value={this.state.fullName}
             onChangeText={(text) => {
               this.handleUpdateState("fullName", text);
@@ -51,11 +91,10 @@ class UploadBuisness extends Component {
           <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
-            secureTextEntry={true}
-            placeholder="buisnessName"
-            value={this.state.buisnessName}
+            placeholder="Business name"
+            value={this.state.name}
             onChangeText={(text) => {
-              this.handleUpdateState("buisnessName", text);
+              this.handleUpdateState("name", text);
             }}
           />
 
@@ -81,7 +120,7 @@ class UploadBuisness extends Component {
         </View>
 
         <View style={styles.nextbutton}>
-          <TouchableOpacity onPress={() => navigation.navigate("AllBuisness")}>
+          <TouchableOpacity  onPress={this.handleBusinessUpload}>
             <Text style={styles.nextText}>upload</Text>
           </TouchableOpacity>
         </View>
@@ -171,10 +210,13 @@ const styles = StyleSheet.create({
   },
 });
 
+
+export default connect(() => ({}), {uploadBusiness})(UploadBuisness);
+
 // const mapStateToProp = (state) => {
 //   return { auth: state };
 // };
 
 // export default connect(mapStateToProp, { createEmailAccount, registerError })(
-export default UploadBuisness;
+// export default UploadBuisness;
 // );
