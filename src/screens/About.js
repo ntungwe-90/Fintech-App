@@ -38,7 +38,7 @@ export default function About({ navigation }) {
           style={styles.nextbutton}
           onPress={() => navigation.navigate("DecisionPage")}
         >
-          <Text style={styles.nextText}>NEXT</Text>
+          <Text style={styles.nextText}>RATE</Text>
           <Text style={styles.star}></Text>
         </TouchableOpacity>
       </View>
