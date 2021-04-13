@@ -8,8 +8,9 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 // import { createEmailAccount, registerError } from "../../redux/actions/authActions";
+import { createEmailAccount, registerError } from "../redux/actions";
 
 class RegisterScreen extends Component {
   constructor(props) {
@@ -22,21 +23,21 @@ class RegisterScreen extends Component {
     };
   }
 
-  // handleUpdateState = (name, value) => {
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // };
+  handleUpdateState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
 
-  // handleOnSubmit = () => {
-  //   if (this.state.password !== this.state.comfirm) {
-  //     console.log("aaaaaa");
-  //     this.props.registerError("Passwords do not match");
-  //     return;
-  //   }
-  //   console.log("fffffdgrtg");
-  //   this.props.createEmailAccount(this.state.email, this.state.password);
-  // };
+  handleOnSubmit = () => {
+    // if (this.state.password !== this.state.comfirm) {
+    //   console.log("aaaaaa");
+    //   this.props.registerError("Passwords do not match");
+    //   return;
+    // }
+    console.log("fffffdgrtg");
+    this.props.createEmailAccount(this.state.email, this.state.password);
+  };
 
   render() {
     const { navigation, auth } = this.props;
@@ -50,9 +51,9 @@ class RegisterScreen extends Component {
           <Text style={styles.loginText}>Sign up</Text>
         </View>
         <View>
-          {/* {auth.error.register && (
+          {auth.error.register && (
             <Text style={{ color: "red" }}>{auth.error.register}</Text>
-          )} */}
+          )}
           {/* <View style={styles.registration}>
            <Text style={styles.label}>First Name</Text> */}
           <TextInput
@@ -95,13 +96,12 @@ class RegisterScreen extends Component {
             }}
           />
 
-          <Text style={styles.forgotPassword}>forgot password?</Text>
         </View>
 
         <View>
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={() => this.props.navigation.navigate("UploadBuisness")}
+            onPress={this.handleOnSubmit}
           >
             <Text style={styles.buttonText}>sign up</Text>
           </TouchableOpacity>
@@ -192,10 +192,12 @@ const styles = StyleSheet.create({
   },
 });
 
-// const mapStateToProp = (state) => {
-//   return { auth: state };
-// };
+// export default connect(() => ({}))(RegisterScreen);
 
-// export default connect(mapStateToProp, { createEmailAccount, registerError })(
-export default RegisterScreen;
-// );
+const mapStateToProp = (state) => {
+  return { auth: state };
+};
+
+export default connect(mapStateToProp, { createEmailAccount, registerError })(
+  RegisterScreen
+);
