@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 // import { loginEmailAccount, loginError } from "../../redux/actions/authActions";
-
+import {loginEmailAccount, loginError} from "../redux/actions"
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
@@ -20,17 +20,18 @@ class LoginScreen extends Component {
     };
   }
 
-  //   handleUpdateState = (name, value) => {
-  //     this.setState({
-  //       [name]: value,
-  //     });
-  //   };
+    handleUpdateState = (name, value) => {
+      this.setState({
+        [name]: value,
+      });
+    };
 
-  //   handleOnSubmit = () => {
-  //     this.props.loginEmailAccount(this.state.email, this.state.password);
-  //   };
+    handleOnSubmit = () => {
+      console.log(this.state)
+      this.props.loginEmailAccount(this.state.email, this.state.password);
+    };
   render() {
-    //     const { navigation, auth } = this.props;
+        const { navigation, auth } = this.props;
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.imageContainer}>
@@ -43,9 +44,9 @@ class LoginScreen extends Component {
           <Text style={styles.loginText}>LOG IN</Text>
         </View>
         <View>
-          {/* { auth.error.login && (
+          { auth.error.login && (
             <Text style={{ color: "red" }}>{auth.error.login}</Text>
-          )} */}
+          )}
           <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
@@ -61,9 +62,9 @@ class LoginScreen extends Component {
             placeholderTextColor="#aaaaaa"
             secureTextEntry={true}
             placeholder="Password"
-            value={this.state.Password}
+            value={this.state.password}
             onChangeText={(text) => {
-              this.handleUpdateState("Password", text);
+              this.handleUpdateState("password", text);
             }}
           />
         </View>
@@ -73,9 +74,10 @@ class LoginScreen extends Component {
           <TouchableOpacity
             style={styles.buttonContainer}
             // onPress={() => this.props.navigation.navigate("AllBuisness")}
-            onPress={() => this.props.dispatch({type: "LOGIN_USER"})}
+            // onPress={() => this.props.dispatch({type: "LOGIN_USER"})}\
+            onPress={this.handleOnSubmit}
           >
-            <Text style={styles.buttonText} onPress={this.handleOnSubmit}>
+            <Text style={styles.buttonText} >
               log in
             </Text>
           </TouchableOpacity>
@@ -152,4 +154,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(() => ({}))(LoginScreen);
+// export default connect(() => ({}))(LoginScreen);
+
+const mapStateToProp = (state) => {
+  return { auth: state };
+};
+
+export default connect(mapStateToProp, { loginEmailAccount, loginError })(
+  LoginScreen
+);
+
+
+
