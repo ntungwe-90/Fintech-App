@@ -1,5 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { connect } from "react-redux";
 import LandingPage from "./screens/LandigPage";
 import About from "./screens/About";
 import DecisionPage from "./screens/DecisionPage";
@@ -13,40 +14,42 @@ import UploadBuisness from "./screens/UploadBuisness";
 
 const Stack = createStackNavigator();
 
-export default function Navigation () {
+function Navigation (props) {
     return (
-          <Stack.Navigator
-            // initialRouteName="LandingPage"
-            screenOptions={{
-              title: null,
-              // header: () => null,
-              headerStyle: {
-                backgroundColor: "#3b76ad",
-              },
-              headerTintColor: "white",
-              headerTitleAlign: "center",
-            }}
-          >
-            {/* <Stack.Screen
-              options={{
-                header: () => null,
-              }}
-              name="LandingPage"
-              component={LandingPage}
-            />
-            <Stack.Screen name="About" component={About} />
-            <Stack.Screen name="DecisionPage" component={DecisionPage} />
-            <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        
-            <Stack.Screen name="RegisterScreen" component={RegisterScreen} /> */}
-        
-            <Stack.Screen name="AllBuisness" component={AllBuisness} />
-        
-            <Stack.Screen name="BuisnessDetails1" component={BuisnessDetails1} />
-        
-            <Stack.Screen name="BuisnessDetails2" component={BuisnessDetails2} />
-        
-            <Stack.Screen name="UploadBuisness" component={UploadBuisness} />
-          </Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName={(props.newUser ? "UploadBuisness" : "AllBuisness")}
+        screenOptions={{
+          title: null,
+          // header: () => null,
+          headerStyle: {
+            backgroundColor: "#3b76ad",
+          },
+          headerTintColor: "white",
+          headerTitleAlign: "center",
+        }}
+      >
+        {/* <Stack.Screen
+          options={{
+            header: () => null,
+          }}
+          name="LandingPage"
+          component={LandingPage}
+        />
+        <Stack.Screen name="About" component={About} />
+        <Stack.Screen name="DecisionPage" component={DecisionPage} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+    
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen} /> */}
+    
+        <Stack.Screen name="AllBuisness" component={AllBuisness} />
+    
+        <Stack.Screen name="BuisnessDetails1" component={BuisnessDetails1} />
+    
+        <Stack.Screen name="BuisnessDetails2" component={BuisnessDetails2} />
+    
+        <Stack.Screen name="UploadBuisness" component={UploadBuisness} />
+      </Stack.Navigator>
     )
 }
+
+export default connect(state => ({newUser: state.newUser}))(Navigation)
