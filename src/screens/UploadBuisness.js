@@ -21,10 +21,13 @@ class UploadBuisness extends Component {
       fullName: "",
       // LastName:"",
       // email: "",
-      name: "",
+      businessName: "",
       image: require("../../assets/logo.png"),
       products: "",
       rate: "",
+      location: "",
+      phone: "",
+      startCapital: ""
     };
   }
 
@@ -58,7 +61,7 @@ class UploadBuisness extends Component {
 
   handleBusinessUpload = () => {
     this.props.uploadBusiness(this.state)
-    this.props.navigation.navigate("AllBuisness")
+    this.props.navigation.navigate("BusinessOwner")
   }
 
   render() {
@@ -69,7 +72,7 @@ class UploadBuisness extends Component {
           <Text style={styles.loginText}>Buisness Info</Text>
         </View>
         <View>
-          <Text>profil picture</Text>
+          <Text>profile picture</Text>
           <Pressable onPress={this.pickImage}>
             <Image
               style={styles.image}
@@ -94,7 +97,7 @@ class UploadBuisness extends Component {
             placeholder="Business name"
             value={this.state.name}
             onChangeText={(text) => {
-              this.handleUpdateState("name", text);
+              this.handleUpdateState("businessName", text);
             }}
           />
 
@@ -114,7 +117,36 @@ class UploadBuisness extends Component {
             placeholder="ratings"
             value={this.state.ratings}
             onChangeText={(text) => {
-              this.handleUpdateState("ratings", text);
+              this.handleUpdateState("rate", text);
+            }}
+          />
+           <TextInput
+            style={styles.input}
+            placeholderTextColor="#aaaaaa"
+            placeholder="location"
+            value={this.state.location}
+            onChangeText={(text) => {
+              this.handleUpdateState("location", text);
+            }}
+          />
+
+
+<TextInput
+            style={styles.input}
+            placeholderTextColor="#aaaaaa"
+            placeholder="tell"
+            value={this.state.tell}
+            onChangeText={(text) => {
+              this.handleUpdateState("phone", text);
+            }}
+          />
+           <TextInput
+            style={styles.input}
+            placeholderTextColor="#aaaaaa"
+            placeholder="start capital"
+            value={this.state.startcapital}
+            onChangeText={(text) => {
+              this.handleUpdateState("startCapital", text);
             }}
           />
         </View>

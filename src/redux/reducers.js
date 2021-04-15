@@ -1,11 +1,12 @@
 // import {v4 as uuid} from 'uuid';
+import {buisness} from "../dummy-data"
 
 const initialState = {
   users: {},
   loggedIn: false,
   error: {},
   newUser: false,
-  buisness: new Array()
+  buisness,
 };
 
 const reducer = (state = initialState, {type, payload}) => {

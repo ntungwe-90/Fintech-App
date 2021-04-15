@@ -72,6 +72,7 @@ export function loginError(error) {
 }
 
 export function uploadBusiness(details) {
+  
     return {
         type: "UPLOAD_BUSINESS",
         payload: details

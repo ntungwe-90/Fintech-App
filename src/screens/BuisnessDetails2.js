@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FlatList,
   ScrowView,
@@ -8,9 +8,11 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { Rating } from "react-native-ratings";
+// import { Rating } from "react-native-ratings";
+import Rating from "../components/Rating"
 
 export default function BuisnessDetails2({ navigation }) {
+  const [rating, setRating] = useState(0)
   return (
     <View style={styles.container}>
       <View>
@@ -73,10 +75,10 @@ export default function BuisnessDetails2({ navigation }) {
 
       <View>
         <Rating
-          readonly={true}
-          imageSize={65}
-          tintColor="#e6ebe6"
-          style={{ paddingVertical: 10, alignSelf: "flex-start" }}
+          // readonly={true}
+          total={5}
+          rating={rating}
+          onRatingChange={setRating}
         />
       </View>
       {/* <View>

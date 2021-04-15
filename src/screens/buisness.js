@@ -35,21 +35,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "row",
-    marginVertical: 4,
-    paddingVertical: 8,
-    backgroundColor: "#eee"
+    marginVertical: 10,
+    backgroundColor: "#eee",
+    padding: 15,
   },
 
   image_container: {
-    flex: 2,
+    // flex: 2,
   },
 
   details_container: {
-    flex: 6,
+    // flex: 6,
+    flex: 1
   },
 
   button_container: {
-    flex: 2,
+    // flex: 2,
     alignItems: "center",
     justifyContent: "center"
   },
@@ -66,11 +67,12 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    flex: 2,
+    // flex: 2,
     height: 60,
     width: 60,
     alignSelf: "center",
     marginHorizontal: 2,
-    borderRadius: 100
+    borderRadius: 100,
+    marginRight: 10
   }
 })

@@ -90,7 +90,26 @@ const buisness = [
     products: "Laptops, fridges, Irons",
     rating: "34",
     rate: "rate",
+    photos: [
+      require("../../assets/bed.jpg"),
+      require("../../assets/hotel.jpg"),
+      require("../../assets/hotel2.jpg"),
+      require("../../assets/casino.jpg"),
+      require("../../assets/casino2.jpg"),
+      require("../../assets/mixed.jpg"),
+    ],
+    moreImages: [
+      require("../../assets/h1.jpg"),
+      require("../../assets/reception.jpg"),
+    ],
+    contact: {
+      location: "achimota, kozoa, madina.",
+      tel: "05944329",
+      email: "hotelez@gmail.com",
+    },
+    capital: 5000,
   },
+  
 ];
 
 
@@ -135,6 +154,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginHorizontal: 2,
     borderRadius: 50,
+    marginTop: 10,
   },
   flatlist: {
     flex: 8,
