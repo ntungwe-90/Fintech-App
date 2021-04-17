@@ -11,7 +11,7 @@ export default function DecisionPage({ navigation }) {
       <View style={styles.info}>
         <Text style={styles.contactInfo}>
           {" "}
-          DISCOVER AND INVEST IN NEW MICRO BUINESSES
+          DISCOVER AND INVEST IN NEW MICRO BUSINESSES
         </Text>
       </View>
       <View>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   contactInfo: {
-    fontSize: 15,
+    fontSize: 13,
     color: "#3b76ad",
     fontWeight: "bold",
   },

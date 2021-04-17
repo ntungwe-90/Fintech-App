@@ -34,38 +34,13 @@ export default function BuisnessDetails1({
           keyExtractor={(_, index) => `${index}`}
         />
 
-        {/* <FlatList
-          data={props.photos}
-          
-          renderItem={({ item }) => {
-            return (
-              <Image source={item} />
-            );
-          }}
-          keyExtractor={(item, index) => `${props.name}-${index}`}
-          /> */}
-        {/* <View style={styles.photos}></View> */}
-        {/* <View style={styles.text2}>
-            <Text>Burger</Text>
-            <Text>Pizza</Text>
-            <Text>Rice</Text>
-            <Text>Vegies</Text>
-            <Text>Salad</Text>
-            <Text>Cofee</Text>
-          </View> */}
-        {/* <View style={styles.details}>
-          <Image
-          style={styles.image1}
-          source={require("../../../assets/saloon2.jpg")}
-        />
-        <Text style={styles.offers}>WE OFFER MANICURES, PENDICURES, MASSAGES AND MOBILE MONEY</Text>
-          </View> */}
+      
         <View>
           <Text style={styles.textinfo}>{props.description}</Text>
           {moreImages?.[0] && (
             <Image style={styles.image1} source={moreImages[0]} />
           )}
-          <Text>Proffessional workers and air conditioned environment</Text>
+          <Text>Proffessional Workers and Air Conditioned Environment</Text>
           {moreImages?.[1] && (
             <Image style={styles.image1} source={moreImages[1]} />
           )}
@@ -81,7 +56,7 @@ export default function BuisnessDetails1({
           {contact?.location && <Text>Location: {contact?.location}</Text>}
          {contact?.tel && <Text>tel: {contact?.tel}</Text>}
           {contact?.email && <Text>Email: {contact?.email}</Text>}
-          {props.capital && <Text>Start capital: {props.capital} ghc</Text>}
+          {props.capital && <Text>Start Capital: {props.capital} ghc</Text>}
         </View>
         <View style={styles.nextbutton}>
           <TouchableOpacity

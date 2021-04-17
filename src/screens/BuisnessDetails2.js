@@ -40,22 +40,22 @@ export default function BuisnessDetails2({ navigation }) {
         <Text>10000</Text>
       </View>
       <View style={styles.profit}>
-        <Text>massage</Text>
+        <Text>Massage</Text>
         <Text>6000</Text>
         <Text>120000</Text>
       </View>
       <View style={styles.profit}>
-        <Text>polish</Text>
+        <Text>Polish</Text>
         <Text>1000</Text>
         <Text>3000</Text>
       </View>
       <View style={styles.profit}>
-        <Text>kits</Text>
+        <Text>Kits</Text>
         <Text>1000</Text>
         <Text>1500</Text>
       </View>
       <View style={styles.profit}>
-        <Text>hair</Text>
+        <Text>Hair</Text>
         <Text>5000</Text>
         <Text>10000</Text>
       </View>
@@ -69,7 +69,7 @@ export default function BuisnessDetails2({ navigation }) {
           Amount needed to expand =3000000
         </Text>
         <Text style={styles.donationText}>
-          contact: 0592286843 or violadavis@email.com
+          Contact: 0592286843 or violadavis@email.com
         </Text>
       </View>
 
@@ -88,7 +88,7 @@ export default function BuisnessDetails2({ navigation }) {
       </View> */}
       <View style={styles.nextbutton}>
         <TouchableOpacity onPress={() => navigation.navigate("AllBuisness")}>
-          <Text style={styles.nextText}>post a review</Text>
+          <Text style={styles.nextText}>Post a review</Text>
         </TouchableOpacity>
       </View>
     </View>

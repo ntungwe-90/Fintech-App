@@ -69,7 +69,7 @@ class UploadBuisness extends Component {
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.loginTextContainer}>
-          <Text style={styles.loginText}>Buisness Info</Text>
+          <Text style={styles.loginText}>Business Info</Text>
         </View>
         <View>
           <Text>profile picture</Text>

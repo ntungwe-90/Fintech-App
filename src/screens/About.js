@@ -9,14 +9,14 @@ export default function About({ navigation }) {
         source={require("../../assets/logo.png")}
       />
       <View style={styles.info}>
-        <Text style={styles.contactInfo}> WELCOME TO BUISNESS POINT</Text>
+        <Text style={styles.contactInfo}> WELCOME TO BUSINESS POINT</Text>
         
       </View>
 
       {/* <View style={styles.info}>  */}
        <Text style={styles.contactInfo}>
-          BUISNESS POINT IS A MOBILE APPLICATION WHICH CONNECTS MICRO-SERVICES
-          WITH INVESTORS, PEOPLE DISCOVER NEW EXCITING MICRO BUINESSES AND THEY
+          BUSINESS POINT IS A MOBILE APPLICATION WHICH CONNECTS MICRO-SERVICES
+          WITH INVESTORS, PEOPLE DISCOVER NEW EXCITING MICRO BUSINESSES AND THEY
           RATE THEIR SERVICES AND EVEN INVEST IN THEM.
         </Text>
        {/* </View> */}

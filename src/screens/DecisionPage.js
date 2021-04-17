@@ -18,7 +18,7 @@ export default function DecisionPage({navigation}) {
                 </View> */}
         <View>
           <TouchableOpacity style={styles.buttonContainer1} onPress={()=>navigation.navigate("AllBuisness")}>
-            <Text style={styles.buttonText}>DISCOVER BUISNESSES</Text>
+            <Text style={styles.buttonText}>DISCOVER BUSINESSES</Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
@@ -26,7 +26,7 @@ export default function DecisionPage({navigation}) {
 
       <TouchableOpacity style={styles.buttonContainer2} onPress={()=>navigation.navigate("RegisterScreen")}>
         <View>
-          <Text style={styles.buttonText}>UPLOAD BUISNESSES</Text>
+          <Text style={styles.buttonText}>UPLOAD BUSINESSES</Text>
         </View>
       </TouchableOpacity>
 

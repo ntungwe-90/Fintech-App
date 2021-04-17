@@ -16,6 +16,8 @@ import OwnersProduct from "./screens/OwnersProduct";
 import Products from "./screens/Products";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import ProductList from "./screens/ProductList";
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
@@ -28,6 +30,8 @@ function MyTabs() {
       }}
     >
       <Tab.Screen
+       name="Products"
+       component={Products}
         options={{
           tabBarLabel: "Business Info",
           tabBarIcon: ({ color, size }) => (
@@ -42,7 +46,8 @@ function MyTabs() {
         options={{
           tabBarLabel: "My Products",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
+            <Ionicons name="menu" color={color} size={size} />
+            // <MaterialCommunityIcons name="bell"
           ),
         }}
         name="OwnersProduct"
@@ -93,6 +98,7 @@ function Navigation(props) {
 
       {/* <Stack.Screen name="OwnerProduct" component={OwnersProduct} /> */}
       <Stack.Screen name="Products" component={Products} />
+      <Stack.Screen name="ProductList" component={ProductList} />
     </Stack.Navigator>
   );
 }
