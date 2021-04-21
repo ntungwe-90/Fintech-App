@@ -18,6 +18,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import ProductList from "./screens/ProductList";
+import AddProduct from "./screens/AddProduct"
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
@@ -99,6 +100,7 @@ function Navigation(props) {
       {/* <Stack.Screen name="OwnerProduct" component={OwnersProduct} /> */}
       <Stack.Screen name="Products" component={Products} />
       <Stack.Screen name="ProductList" component={ProductList} />
+      <Stack.Screen name="AddProduct" component={AddProduct} />
     </Stack.Navigator>
   );
 }

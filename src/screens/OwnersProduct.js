@@ -31,7 +31,7 @@ export default function OwnersProduct({ navigation }) {
       />
 
       <View>
-        <TouchableOpacity onPress={() => navigation.navigate("ProductList")}>
+        <TouchableOpacity onPress={() => navigation.navigate("AddProduct")}>
           <Ionicons
             name="add-circle-outline"
             size={54}
