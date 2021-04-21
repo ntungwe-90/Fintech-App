@@ -4,22 +4,18 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 export default function About({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require("../../assets/logo.png")}
-      />
+      <Image style={styles.image} source={require("../../assets/logo.png")} />
       <View style={styles.info}>
         <Text style={styles.contactInfo}> WELCOME TO BUSINESS POINT</Text>
-        
       </View>
 
       {/* <View style={styles.info}>  */}
-       <Text style={styles.contactInfo}>
-          BUSINESS POINT IS A MOBILE APPLICATION WHICH CONNECTS MICRO-SERVICES
-          WITH INVESTORS, PEOPLE DISCOVER NEW EXCITING MICRO BUSINESSES AND THEY
-          RATE THEIR SERVICES AND EVEN INVEST IN THEM.
-        </Text>
-       {/* </View> */}
+      <Text style={styles.contactInfo}>
+        BUSINESS POINT IS A MOBILE APPLICATION WHICH CONNECTS MICRO-SERVICES
+        WITH INVESTORS, PEOPLE DISCOVER NEW EXCITING MICRO BUSINESSES AND THEY
+        RATE THEIR SERVICES AND EVEN INVEST IN THEM.
+      </Text>
+      {/* </View> */}
       <View style={styles.contactInfo}>
         <Text style={styles.contactInfo}>NEW HERE? SIGN IN OR REGISTER</Text>
       </View>
@@ -51,7 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-around",
     // alignItems:"center",
-    backgroundColor:"lightgrey"
+    backgroundColor: "lightgrey",
   },
   image: {
     alignSelf: "center",

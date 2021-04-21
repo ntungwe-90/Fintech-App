@@ -30,8 +30,8 @@ function MyTabs() {
       }}
     >
       <Tab.Screen
-       name="Products"
-       component={Products}
+        name="Products"
+        component={Products}
         options={{
           tabBarLabel: "Business Info",
           tabBarIcon: ({ color, size }) => (

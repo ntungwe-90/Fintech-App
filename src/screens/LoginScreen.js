@@ -9,8 +9,7 @@ import {
   Image,
 } from "react-native";
 import { connect } from "react-redux";
-// import { loginEmailAccount, loginError } from "../../redux/actions/authActions";
-import {loginEmailAccount, loginError} from "../redux/actions"
+import { loginEmailAccount, loginError } from "../redux/actions";
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
@@ -20,18 +19,18 @@ class LoginScreen extends Component {
     };
   }
 
-    handleUpdateState = (name, value) => {
-      this.setState({
-        [name]: value,
-      });
-    };
+  handleUpdateState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
 
-    handleOnSubmit = () => {
-      console.log(this.state)
-      this.props.loginEmailAccount(this.state.email, this.state.password);
-    };
+  handleOnSubmit = () => {
+    console.log(this.state);
+    this.props.loginEmailAccount(this.state.email, this.state.password);
+  };
   render() {
-        const { navigation, auth } = this.props;
+    const { navigation, auth } = this.props;
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.imageContainer}>
@@ -44,7 +43,7 @@ class LoginScreen extends Component {
           <Text style={styles.loginText}>LOG IN</Text>
         </View>
         <View>
-          { auth.error.login && (
+          {auth.error.login && (
             <Text style={{ color: "red" }}>{auth.error.login}</Text>
           )}
           <TextInput
@@ -73,13 +72,9 @@ class LoginScreen extends Component {
         <View>
           <TouchableOpacity
             style={styles.buttonContainer}
-            // onPress={() => this.props.navigation.navigate("AllBuisness")}
-            // onPress={() => this.props.dispatch({type: "LOGIN_USER"})}\
             onPress={this.handleOnSubmit}
           >
-            <Text style={styles.buttonText} >
-              log in
-            </Text>
+            <Text style={styles.buttonText}>log in</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.noAccountContainer}>
@@ -154,7 +149,7 @@ const styles = StyleSheet.create({
   },
 });
 
-// export default connect(() => ({}))(LoginScreen);
+
 
 const mapStateToProp = (state) => {
   return { auth: state };
@@ -163,6 +158,3 @@ const mapStateToProp = (state) => {
 export default connect(mapStateToProp, { loginEmailAccount, loginError })(
   LoginScreen
 );
-
-
-

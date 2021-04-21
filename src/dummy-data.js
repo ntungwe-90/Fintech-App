@@ -14,10 +14,7 @@ export const buisness = [
       require("../assets/makeup2.jpg"),
       require("../assets/massage.jpg"),
     ],
-    moreImages: [
-      require("../assets/m2.jpg"),
-      require("../assets/saloon2.jpg"),
-    ],
+    moreImages: [require("../assets/m2.jpg"), require("../assets/saloon2.jpg")],
     contact: {
       location: "Abeka, Circle, Achimota.",
       tel: "0259334563",

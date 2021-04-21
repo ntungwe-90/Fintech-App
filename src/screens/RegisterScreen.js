@@ -9,7 +9,6 @@ import {
   Image,
 } from "react-native";
 import { connect } from "react-redux";
-// import { createEmailAccount, registerError } from "../../redux/actions/authActions";
 import { createEmailAccount, registerError } from "../redux/actions";
 
 class RegisterScreen extends Component {
@@ -43,10 +42,7 @@ class RegisterScreen extends Component {
     const { navigation, auth } = this.props;
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <Image
-          style={styles.image}
-          source={require("../../assets/logo.png")}
-        />
+        <Image style={styles.image} source={require("../../assets/logo.png")} />
         <View style={styles.loginTextContainer}>
           <Text style={styles.loginText}>Sign up</Text>
         </View>
@@ -95,7 +91,6 @@ class RegisterScreen extends Component {
               this.handleUpdateState("password", text);
             }}
           />
-
         </View>
 
         <View>

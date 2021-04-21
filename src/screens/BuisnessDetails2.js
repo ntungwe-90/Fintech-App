@@ -9,23 +9,20 @@ import {
   TouchableOpacity,
 } from "react-native";
 // import { Rating } from "react-native-ratings";
-import Rating from "../components/Rating"
+import Rating from "../components/Rating";
 
 export default function BuisnessDetails2({ navigation }) {
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(0);
   return (
     <View style={styles.container}>
       <View>
-        <Image
-          style={styles.image}
-          source={require("../../assets/logo.png")}
-        />
+        <Image style={styles.image} source={require("../../assets/logo.png")} />
         <Text style={styles.saloonName}>SALOON DE REINO</Text>
       </View>
 
       <View>
         <Text>
-          Account Details on goods sold and profit made in the past six months{" "}
+          Account Details on Goods Sold and Profit Made in the Past Six Months{" "}
         </Text>
       </View>
 

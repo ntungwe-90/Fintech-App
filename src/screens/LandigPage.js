@@ -4,10 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 export default function DecisionPage({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require("../../assets/logo.png")}
-      />
+      <Image style={styles.image} source={require("../../assets/logo.png")} />
       <View style={styles.info}>
         <Text style={styles.contactInfo}>
           {" "}
@@ -15,10 +12,9 @@ export default function DecisionPage({ navigation }) {
         </Text>
       </View>
       <View>
-        {/* <Text style={styles.message}>Discover and invest in New Micro Buisnesses</Text> */}
         <Image
           style={styles.image1}
-          source={require("../../assets/Screen1.png")}
+          source={require("../../assets/newprofile.jpg")}
         />
       </View>
 
