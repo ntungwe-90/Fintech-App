@@ -11,6 +11,7 @@ import {
   Platform,
 } from "react-native";
 import { connect } from "react-redux";
+// import {AddProduct} from "../redux/actions"
 
 class AddProduct extends Component {
   constructor(props) {
@@ -21,6 +22,23 @@ class AddProduct extends Component {
       description: "",
     };
   }
+  handleUpdateState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
+  
+
+  handleOnSubmit = () => {
+    // if (this.state.password !== this.state.comfirm) {
+    //   console.log("aaaaaa");
+    //   this.props.registerError("Passwords do not match");
+    //   return;
+    // }
+    console.log("fffffdgrtg");
+    this.props.AddProduct(this.state.productname, this.state.price, this.state.description);
+  };
+
 
   render() {
     const { navigation, auth } = this.props;
@@ -63,7 +81,7 @@ class AddProduct extends Component {
         </View>
 
         <View style={styles.nextbutton}>
-          <TouchableOpacity onPress={this.handleBusinessUpload}>
+          <TouchableOpacity onPress={() => navigation.navigate("OwnersProduct")}>
             <Text style={styles.nextText}>ADD</Text>
           </TouchableOpacity>
         </View>

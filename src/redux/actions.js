@@ -54,6 +54,7 @@ function loggedIn(user, isNew=false) {
 function loggedOut(user) {
   return {
     type: "LOGGED_OUT",
+    payload: out,
   };
 }
 
@@ -76,5 +77,13 @@ export function uploadBusiness(details) {
     return {
         type: "UPLOAD_BUSINESS",
         payload: details
-    }
+    };
+}
+
+
+export function AddProduct(info){
+  return{
+    type:"Add_Product",
+    payload: info
+  }
 }

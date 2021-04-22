@@ -83,10 +83,17 @@ export default function BuisnessDetails2({ navigation }) {
           <Text style={styles.buttonText}> Post a Review</Text>
         </TouchableOpacity>
       </View> */}
+      <View style={styles.bottons}>
       <View style={styles.nextbutton}>
         <TouchableOpacity onPress={() => navigation.navigate("AllBuisness")}>
           <Text style={styles.nextText}>Post a review</Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.nextbutton}>
+        <TouchableOpacity onPress={() => navigation.navigate("AllBuisness")}>
+          <Text style={styles.nextText}>Invest</Text>
+        </TouchableOpacity>
+      </View>
       </View>
     </View>
   );
@@ -173,4 +180,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
   },
+  bottons:{
+    flexDirection:"row",
+    justifyContent:"space-between"
+  }
 });

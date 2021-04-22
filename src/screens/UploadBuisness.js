@@ -21,7 +21,7 @@ class UploadBuisness extends Component {
       fullName: "",
       businessName: "",
       image: require("../../assets/logo.png"),
-      products: "",
+      // products: "",
       rate: "",
       location: "",
       phone: "",
@@ -98,7 +98,7 @@ class UploadBuisness extends Component {
             }}
           />
 
-          <TextInput
+          {/* <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
             placeholder="products"
@@ -106,7 +106,7 @@ class UploadBuisness extends Component {
             onChangeText={(text) => {
               this.handleUpdateState("products", text);
             }}
-          />
+          /> */}
 
           <TextInput
             style={styles.input}

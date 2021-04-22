@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   image1: {
-    height: 200,
+    height: 250,
     width: "100%",
   },
   contactInfo: {

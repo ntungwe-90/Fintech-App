@@ -1,4 +1,5 @@
 import React from "react";
+import { TouchableOpacity,Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { connect } from "react-redux";
 import LandingPage from "./screens/LandigPage";
@@ -18,7 +19,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import ProductList from "./screens/ProductList";
-import AddProduct from "./screens/AddProduct"
+import AddProduct from "./screens/AddProduct";
+import { logout } from "./redux/actions";
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
@@ -63,8 +65,10 @@ const Stack = createStackNavigator();
 function Navigation(props) {
   return (
     <Stack.Navigator
-      initialRouteName={props.newUser ? "UploadBuisness" : "AllBuisness"}
+      initialRouteName={props.newUser ? "UploadBuisness" : "OwnersProduct"}
+      //  AllBuisness
       screenOptions={{
+        
         title: null,
         // header: () => null,
         headerStyle: {
@@ -74,6 +78,8 @@ function Navigation(props) {
         headerTitleAlign: "center",
       }}
     >
+
+      
       {/* <Stack.Screen
           options={{
             header: () => null,
@@ -87,7 +93,16 @@ function Navigation(props) {
     
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} /> */}
 
-      <Stack.Screen name="AllBuisness" component={AllBuisness} />
+      <Stack.Screen 
+       name="AllBuisness" 
+       options={{
+        headerRight: () => (
+          <TouchableOpacity style={{ marginRight: 20 }}  onPress={logout} >
+            <Text style={{ color:"white",fontSize:20,fontWeight:"bold" }}>Log Out</Text>
+          </TouchableOpacity>
+        ),
+      }}
+       component={AllBuisness} />
 
       <Stack.Screen name="BuisnessDetails1" component={BuisnessDetails1} />
 
