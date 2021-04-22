@@ -69,7 +69,7 @@ function Navigation(props) {
       //  AllBuisness
       screenOptions={{
         title: null,
-        // header: () => null,
+       
         headerStyle: {
           backgroundColor: "#3b76ad",
         },
