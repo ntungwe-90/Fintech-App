@@ -89,11 +89,11 @@ export default function BuisnessDetails2({ navigation }) {
           <Text style={styles.nextText}>Post a review</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.nextbutton}>
+      {/* <View style={styles.nextbutton}>
         <TouchableOpacity onPress={() => navigation.navigate("AllBuisness")}>
           <Text style={styles.nextText}>Invest</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
       </View>
     </View>
   );

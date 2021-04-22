@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity,Text } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { connect } from "react-redux";
 import LandingPage from "./screens/LandigPage";
@@ -68,7 +68,6 @@ function Navigation(props) {
       initialRouteName={props.newUser ? "UploadBuisness" : "OwnersProduct"}
       //  AllBuisness
       screenOptions={{
-        
         title: null,
         // header: () => null,
         headerStyle: {
@@ -78,8 +77,6 @@ function Navigation(props) {
         headerTitleAlign: "center",
       }}
     >
-
-      
       {/* <Stack.Screen
           options={{
             header: () => null,
@@ -93,29 +90,63 @@ function Navigation(props) {
     
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} /> */}
 
+      <Stack.Screen
+        name="AllBuisness"
+        options={{
+          title: "All Business",
+          headerRight: () => (
+            <TouchableOpacity style={{ marginRight: 20 }} onPress={logout}>
+              <Text
+                style={{ color: "white", fontSize: 20, fontWeight: "bold" }}
+              >
+                Log Out
+              </Text>
+            </TouchableOpacity>
+          ),
+        }}
+        component={AllBuisness}
+      />
+
+      <Stack.Screen
+        options={{
+          title: "Business Details",
+        }}
+        name="BuisnessDetails1"
+        component={BuisnessDetails1}
+      />
+
+      <Stack.Screen
+        options={{
+          title: "Business Details2",
+        }}
+        name="BuisnessDetails2"
+        component={BuisnessDetails2}
+      />
+
       <Stack.Screen 
-       name="AllBuisness" 
        options={{
-        headerRight: () => (
-          <TouchableOpacity style={{ marginRight: 20 }}  onPress={logout} >
-            <Text style={{ color:"white",fontSize:20,fontWeight:"bold" }}>Log Out</Text>
-          </TouchableOpacity>
-        ),
+        title:"Upload Business"
       }}
-       component={AllBuisness} />
+      name="UploadBuisness" component={UploadBuisness} />
 
-      <Stack.Screen name="BuisnessDetails1" component={BuisnessDetails1} />
-
-      <Stack.Screen name="BuisnessDetails2" component={BuisnessDetails2} />
-
-      <Stack.Screen name="UploadBuisness" component={UploadBuisness} />
-
-      <Stack.Screen name="BusinessOwner" component={MyTabs} />
+      <Stack.Screen
+       options={{
+        title:"Business profile"
+      }}
+       name="BusinessOwner" component={MyTabs} />
 
       {/* <Stack.Screen name="OwnerProduct" component={OwnersProduct} /> */}
-      <Stack.Screen name="Products" component={Products} />
+      <Stack.Screen
+       options={{
+        title:"products"
+      }}
+       name="Products" component={Products} />
       <Stack.Screen name="ProductList" component={ProductList} />
-      <Stack.Screen name="AddProduct" component={AddProduct} />
+      <Stack.Screen
+       options={{
+        title:"Add Items"
+      }}
+       name="AddProduct" component={AddProduct} />
     </Stack.Navigator>
   );
 }
