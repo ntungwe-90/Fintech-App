@@ -1,13 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-export default function DecisionPage({navigation}) {
+export default function DecisionPage({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require("../../assets/logo.png")}
-      />
+      <Image style={styles.image} source={require("../../assets/logo.png")} />
       {/* <View style={styles.info}>
             <Text style={styles.contactInfo}> WELCOME TO BUISNESS POINT</Text>
             </View> */}
@@ -17,20 +14,23 @@ export default function DecisionPage({navigation}) {
                     <Text style={styles.contactInfo}>DISCOVER BUISNESSES</Text>
                 </View> */}
         <View>
-          <TouchableOpacity style={styles.buttonContainer1} onPress={()=>navigation.navigate("AllBuisness")}>
+          <TouchableOpacity
+            style={styles.buttonContainer1}
+            onPress={() => navigation.navigate("AllBuisness")}
+          >
             <Text style={styles.buttonText}>DISCOVER BUSINESSES</Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
 
-
-      <TouchableOpacity style={styles.buttonContainer2} onPress={()=>navigation.navigate("RegisterScreen")}>
+      <TouchableOpacity
+        style={styles.buttonContainer2}
+        onPress={() => navigation.navigate("RegisterScreen")}
+      >
         <View>
           <Text style={styles.buttonText}>UPLOAD BUSINESSES</Text>
         </View>
       </TouchableOpacity>
-
-     
     </View>
   );
 }
@@ -38,7 +38,7 @@ export default function DecisionPage({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical:60,
+    marginVertical: 60,
     marginHorizontal: 30,
     // justifyContent:"space-around",
     // justifyContent: "space-evenly",
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 50,
     marginHorizontal: 10,
-    marginVertical:90
+    marginVertical: 90,
   },
   buttonContainer2: {
     height: 50,
@@ -68,8 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-   marginVertical:5
-
+    marginVertical: 5,
   },
   buttonText: {
     color: "white",
@@ -87,9 +86,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 
-  nextbutton:{
+  nextbutton: {
     height: 50,
-    width:150,
+    width: 150,
     backgroundColor: "#3b76ad",
     justifyContent: "center",
     alignItems: "center",

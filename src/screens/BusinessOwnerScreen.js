@@ -23,20 +23,18 @@ export default function BusinessOwnerScreen({ navigation }) {
 
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Full name</Text>
-          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>
-           Micheal spencer
-          </Text>
+          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>Micheal Jordan</Text>
         </View>
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Business Name</Text>
           <Text style={{ color: "#a6a6a6", fontSize: 20 }}>
-           Spencers electronics
+            Jordan's electronics
           </Text>
         </View>
 
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Rating</Text>
-          <Text style={{color: "#a6a6a6", fontSize: 20 }}>******</Text>
+          <Text style={{ color: "yellow", fontSize: 20 }}>******</Text>
         </View>
 
         <View style={styles.labelInfo}>
@@ -46,14 +44,13 @@ export default function BusinessOwnerScreen({ navigation }) {
 
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Phone</Text>
-          <Text style={{color: "#a6a6a6", fontSize: 20 }}> +00145668723 </Text>
+          <Text style={{ color: "#a6a6a6", fontSize: 20 }}> +00145668723 </Text>
         </View>
 
         <View style={styles.labelInfo}>
-          <Text style={{ color: "#3b76ad" }}>Start capital</Text>
-          <Text style={{color: "#a6a6a6", fontSize: 20 }}>50000</Text>
+          <Text style={{ color: "#3b76ad" }}>Start Capital</Text>
+          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>50000</Text>
         </View>
-       
       </View>
     </ScrollView>
   );
@@ -74,7 +71,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     borderRadius: 80,
-    alignSelf:"center"
+    alignSelf: "center",
   },
 
   labelInfo: {

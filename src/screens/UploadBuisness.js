@@ -8,42 +8,42 @@ import {
   ScrollView,
   Image,
   Pressable,
-  Platform
+  Platform,
 } from "react-native";
 import { connect } from "react-redux";
-import * as ImagePicker from 'expo-image-picker'
-import { uploadBusiness } from "../redux/actions"
+import * as ImagePicker from "expo-image-picker";
+import { uploadBusiness } from "../redux/actions";
 
 class UploadBuisness extends Component {
   constructor(props) {
     super(props);
     this.state = {
       fullName: "",
-      // LastName:"",
-      // email: "",
       businessName: "",
-      image: require("../../assets/logo.png"),
-      products: "",
+      image: require("../../assets/casino2.jpg"),
+      // products: "",
       rate: "",
       location: "",
       phone: "",
-      startCapital: ""
+      startCapital: "",
     };
   }
 
   handleUpdateState(key, value) {
-    this.setState({[key]: value})
+    this.setState({ [key]: value });
   }
 
   async componentDidMount() {
-    if (Platform.OS !== 'web') {
-      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== 'granted') {
-        alert('Sorry, we need camera roll permissions to make this work!');
+    if (Platform.OS !== "web") {
+      const {
+        status,
+      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== "granted") {
+        alert("Sorry, we need camera roll permissions to make this work!");
       }
     }
   }
-  
+
   pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -55,29 +55,26 @@ class UploadBuisness extends Component {
     // console.log(result);
 
     if (!result.cancelled) {
-      this.handleUpdateState("image", {uri: result.uri});
+      this.handleUpdateState("image", { uri: result.uri });
     }
   };
 
   handleBusinessUpload = () => {
-    this.props.uploadBusiness(this.state)
-    this.props.navigation.navigate("BusinessOwner")
-  }
+    this.props.uploadBusiness(this.state);
+    this.props.navigation.navigate("BusinessOwner");
+  };
 
   render() {
     const { navigation, auth } = this.props;
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.loginTextContainer}>
-          <Text style={styles.loginText}>Business Info</Text>
+          {/* <Text style={styles.loginText}>Business Info</Text> */}
         </View>
         <View>
           <Text>profile picture</Text>
           <Pressable onPress={this.pickImage}>
-            <Image
-              style={styles.image}
-              source={this.state.image}
-            />
+            <Image style={styles.image} source={this.state.image} />
           </Pressable>
         </View>
         <View>
@@ -101,7 +98,7 @@ class UploadBuisness extends Component {
             }}
           />
 
-          <TextInput
+          {/* <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
             placeholder="products"
@@ -109,7 +106,7 @@ class UploadBuisness extends Component {
             onChangeText={(text) => {
               this.handleUpdateState("products", text);
             }}
-          />
+          /> */}
 
           <TextInput
             style={styles.input}
@@ -120,7 +117,7 @@ class UploadBuisness extends Component {
               this.handleUpdateState("rate", text);
             }}
           />
-           <TextInput
+          <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
             placeholder="location"
@@ -130,8 +127,7 @@ class UploadBuisness extends Component {
             }}
           />
 
-
-<TextInput
+          <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
             placeholder="tell"
@@ -140,7 +136,7 @@ class UploadBuisness extends Component {
               this.handleUpdateState("phone", text);
             }}
           />
-           <TextInput
+          <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
             placeholder="start capital"
@@ -152,7 +148,7 @@ class UploadBuisness extends Component {
         </View>
 
         <View style={styles.nextbutton}>
-          <TouchableOpacity  onPress={this.handleBusinessUpload}>
+          <TouchableOpacity onPress={this.handleBusinessUpload}>
             <Text style={styles.nextText}>upload</Text>
           </TouchableOpacity>
         </View>
@@ -176,7 +172,6 @@ const styles = StyleSheet.create({
     color: "#3b76ad",
     fontWeight: "bold",
     alignSelf: "center",
-    // marginVertical: 20,
   },
   loginTextContainer: {
     marginBottom: 30,
@@ -184,11 +179,10 @@ const styles = StyleSheet.create({
 
   label: {
     fontSize: 20,
-    // color:"grey"
   },
   input: {
     borderBottomWidth: 2,
-    borderBottomColor: "#3b76ad",
+    borderBottomColor: "#ae7a84",
     fontSize: 20,
     height: 50,
     marginTop: 20,
@@ -200,7 +194,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     height: 50,
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
@@ -227,7 +221,7 @@ const styles = StyleSheet.create({
   nextbutton: {
     height: 50,
     width: 150,
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,
@@ -242,8 +236,7 @@ const styles = StyleSheet.create({
   },
 });
 
-
-export default connect(() => ({}), {uploadBusiness})(UploadBuisness);
+export default connect(() => ({}), { uploadBusiness })(UploadBuisness);
 
 // const mapStateToProp = (state) => {
 //   return { auth: state };

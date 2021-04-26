@@ -1,4 +1,5 @@
 import React from "react";
+import { Ionicons } from "@expo/vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
 import LandingPage from "./screens/LandigPage";
 import About from "./screens/About";
@@ -13,31 +14,63 @@ import UploadBuisness from "./screens/UploadBuisness";
 
 const Stack = createStackNavigator();
 
-export default function Navigation () {
-    return (
-          <Stack.Navigator
-            initialRouteName="LandingPage"
-            screenOptions={{
-              title: null,
-              // header: () => null,
-              headerStyle: {
-                backgroundColor: "#3b76ad",
-              },
-              headerTintColor: "white",
-              headerTitleAlign: "center",
-            }}
-          >
-            <Stack.Screen
-              options={{
-                header: () => null,
-              }}
-              name="LandingPage"
-              component={LandingPage}
-            />
-            <Stack.Screen name="About" component={About} />
-            <Stack.Screen name="LoginScreen" component={LoginScreen} />
-            <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-            <Stack.Screen name="DecisionPage" component={DecisionPage} />
-          </Stack.Navigator>
-    )
+export default function Navigation() {
+  return (
+    <Stack.Navigator
+      initialRouteName="LandingPage"
+      screenOptions={{
+        title: null,
+        // header: () => null,
+        headerStyle: {
+          backgroundColor: "#3b76ad",
+        },
+        headerTintColor: "white",
+        headerTitleAlign: "center",
+      }}
+    >
+      <Stack.Screen
+        options={{
+          header: () => null,
+        }}
+        name="LandingPage"
+        component={LandingPage}
+      />
+      <Stack.Screen
+        options={{
+          header: () => null,
+        }}
+        name="About"
+        component={About}
+      />
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{
+          // header: () => null,
+          headerStyle: {
+            backgroundColor: "transparent",
+            // elevation: 0,
+          },
+          headerBackImage: () => (
+            <Ionicons name="md-arrow-back" size={24} color="black" />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="RegisterScreen"
+        component={RegisterScreen}
+        options={{
+          // header: () => null,
+          headerStyle: {
+            backgroundColor: "transparent",
+            // elevation: 0,
+          },
+          headerBackImage: () => (
+            <Ionicons name="md-arrow-back" size={24} color="black" />
+          ),
+        }}
+      />
+      <Stack.Screen name="DecisionPage" component={DecisionPage} />
+    </Stack.Navigator>
+  );
 }

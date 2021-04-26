@@ -6,11 +6,14 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  ActivityIndicator,
   Image,
 } from "react-native";
+import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { connect } from "react-redux";
-// import { loginEmailAccount, loginError } from "../../redux/actions/authActions";
-import {loginEmailAccount, loginError} from "../redux/actions"
+import { loginEmailAccount, loginError } from "../redux/actions";
+
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
@@ -20,71 +23,77 @@ class LoginScreen extends Component {
     };
   }
 
-    handleUpdateState = (name, value) => {
-      this.setState({
-        [name]: value,
-      });
-    };
+  handleUpdateState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
 
-    handleOnSubmit = () => {
-      console.log(this.state)
-      this.props.loginEmailAccount(this.state.email, this.state.password);
-    };
+  handleOnSubmit = () => {
+    this.setState({ loading: true });
+    console.log(this.state);
+    this.props.loginEmailAccount(this.state.email, this.state.password);
+    this.setState({ loading: false });
+  };
+
   render() {
-        const { navigation, auth } = this.props;
+    const { navigation, auth } = this.props;
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <View style={styles.imageContainer}>
-          <Image
-            style={styles.image}
-            source={require("../../assets/logo.png")}
-          />
-        </View>
-        <View style={styles.loginTextContainer}>
-          <Text style={styles.loginText}>LOG IN</Text>
-        </View>
+        <Text style={styles.loginText}>LOG IN</Text>
         <View>
-          { auth.error.login && (
+          {auth.error.login && (
             <Text style={{ color: "red" }}>{auth.error.login}</Text>
           )}
-          <TextInput
-            style={styles.input}
-            placeholderTextColor="#aaaaaa"
-            placeholder="Email"
-            value={this.state.Email}
-            onChangeText={(text) => {
-              this.handleUpdateState("email", text);
-            }}
-          />
-
-          <TextInput
-            style={styles.input}
-            placeholderTextColor="#aaaaaa"
-            secureTextEntry={true}
-            placeholder="Password"
-            value={this.state.password}
-            onChangeText={(text) => {
-              this.handleUpdateState("password", text);
-            }}
-          />
+          <View style={styles.form}>
+            <Text style={styles.label}>Email</Text>
+            <View style={styles.inputGroup}>
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="#aaaaaa"
+                placeholder="Email"
+                value={this.state.Email}
+                onChangeText={(text) => {
+                  this.handleUpdateState("email", text);
+                }}
+              />
+              <Feather name="user" size={24} color="#aaaaaa" />
+            </View>
+            <Text style={styles.label}>Password</Text>
+            <View style={styles.inputGroup}>
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="#aaaaaa"
+                secureTextEntry={true}
+                placeholder="Password"
+                value={this.state.password}
+                onChangeText={(text) => {
+                  this.handleUpdateState("password", text);
+                }}
+              />
+              <Ionicons name="md-key-outline" size={24} color="#aaaaaa" />
+            </View>
+          </View>
         </View>
-        <Text style={styles.password}>forgot password?</Text>
+        <Text style={styles.password}>Forgot password?</Text>
 
         <View>
           <TouchableOpacity
             style={styles.buttonContainer}
-            // onPress={() => this.props.navigation.navigate("AllBuisness")}
-            // onPress={() => this.props.dispatch({type: "LOGIN_USER"})}\
             onPress={this.handleOnSubmit}
           >
-            <Text style={styles.buttonText} >
-              log in
-            </Text>
+            {this.state.loading ? (
+              <ActivityIndicator animating={true} color="#fff" />
+            ) : (
+              <Text style={styles.buttonText}>Log In</Text>
+            )}
           </TouchableOpacity>
         </View>
         <View style={styles.noAccountContainer}>
-          <Text style={styles.noAccountText}>Dont have an account?</Text>
-          <TouchableOpacity>
+          <Text style={styles.noAccountText}>Don't have an account?</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("RegisterScreen")}
+          >
             <Text style={styles.signupText}>Sign up</Text>
           </TouchableOpacity>
         </View>
@@ -96,65 +105,77 @@ class LoginScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 50,
+    padding: 30,
     // marginVertical: 50,
+    backgroundColor: "#f4f5f6",
   },
 
-  image: {
-    alignSelf: "center",
-    width: 100,
-    height: 80,
-    borderRadius: 80,
-  },
   loginText: {
     fontSize: 30,
-    color: "#3b76ad",
+    color: "#ae7a84",
     fontWeight: "bold",
-  },
-  loginTextContainer: {
-    marginBottom: 30,
-  },
-  input: {
-    borderBottomWidth: 2,
-    borderBottomColor: "#3b76ad",
-    fontSize: 20,
-    height: 50,
-    marginTop: 20,
+    marginBottom: 40,
+    textAlign: "center",
   },
 
-  buttonContainer: {
-    height: 50,
-    backgroundColor: "#3b76ad",
-    justifyContent: "center",
+  label: {
+    marginBottom: 10,
+    fontSize: 17,
+    color: "#202020",
+  },
+
+  inputGroup: {
+    borderWidth: 1,
+    borderColor: "#d2d2d2",
+    borderRadius: 5,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
     alignItems: "center",
-    borderRadius: 10,
-    marginVertical: 50,
+    marginBottom: 30,
+  },
+
+  input: {
+    fontSize: 17,
+    flexGrow: 1,
   },
 
   password: {
     alignSelf: "flex-end",
-    color: "#3b76ad",
+    color: "#ae7a84",
   },
+
+  buttonContainer: {
+    height: 50,
+    backgroundColor: "#ae7a84",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    marginTop: 70,
+  },
+
   buttonText: {
     color: "white",
-    fontSize: 25,
-    fontWeight: "bold",
+    fontSize: 18,
+    // fontWeight: "bold",
   },
+
   noAccountContainer: {
     flexDirection: "row",
     justifyContent: "center",
+    marginTop: 20,
   },
+
   noAccountText: {
     marginRight: 10,
     fontSize: 16,
   },
+
   signupText: {
     fontSize: 16,
-    color: "#3b76ad",
+    color: "#ae7a84",
   },
 });
-
-// export default connect(() => ({}))(LoginScreen);
 
 const mapStateToProp = (state) => {
   return { auth: state };
@@ -163,6 +184,3 @@ const mapStateToProp = (state) => {
 export default connect(mapStateToProp, { loginEmailAccount, loginError })(
   LoginScreen
 );
-
-
-

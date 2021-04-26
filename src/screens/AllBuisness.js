@@ -1,7 +1,14 @@
 import React from "react";
-import { FlatList, scrowView, Text, View, StyleSheet, Image } from "react-native";
-import { connect } from "react-redux"
-import Buisness from './buisness';
+import {
+  FlatList,
+  scrowView,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+} from "react-native";
+import { connect } from "react-redux";
+import Buisness from "./buisness";
 // import {buisness} from "../dummy-data"
 
 const buisness = [
@@ -109,29 +116,25 @@ const buisness = [
     },
     capital: 5000,
   },
-  
 ];
 
-
-function AllBuisness({navigation, ...props}) {
+function AllBuisness({ navigation, ...props }) {
   return (
     <View style={styles.container}>
-      <View style={styles.image_conainer}>
-        <Image source={require('../../assets/logo.png')} style={styles.image5} />
-      </View>
+      {/* <View style={styles.image_conainer}>
+        <Image
+          source={require("../../assets/logo.png")}
+          style={styles.image5}
+        />
+      </View> */}
       <View style={styles.flatlist}>
-      <FlatList
-         data={[...buisness, ...props.buisness]}
-         renderItem={({ item }) => {
-           return (
-             <Buisness
-               {...item}
-               navigation={navigation}
-             />
-           );
-         }}
-         keyExtractor={(item, index) => `${item?.name}-${index}`}
-         />
+        <FlatList
+          data={[...buisness, ...props.buisness]}
+          renderItem={({ item }) => {
+            return <Buisness {...item} navigation={navigation} />;
+          }}
+          keyExtractor={(item, index) => `${item?.name}-${index}`}
+        />
       </View>
     </View>
   );
@@ -145,7 +148,6 @@ const styles = StyleSheet.create({
   image_conainer: {
     flex: 2,
     alignItems: "center",
-    
   },
 
   image5: {
@@ -158,7 +160,7 @@ const styles = StyleSheet.create({
   },
   flatlist: {
     flex: 8,
-  }
-})
+  },
+});
 
-export default connect(state => ({buisness: state.buisness}))(AllBuisness)
+export default connect((state) => ({ buisness: state.buisness }))(AllBuisness);

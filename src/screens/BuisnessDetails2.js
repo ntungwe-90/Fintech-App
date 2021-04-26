@@ -9,23 +9,20 @@ import {
   TouchableOpacity,
 } from "react-native";
 // import { Rating } from "react-native-ratings";
-import Rating from "../components/Rating"
+import Rating from "../components/Rating";
 
 export default function BuisnessDetails2({ navigation }) {
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(0);
   return (
     <View style={styles.container}>
       <View>
-        <Image
-          style={styles.image}
-          source={require("../../assets/logo.png")}
-        />
+        <Image style={styles.image} source={require("../../assets/logo.png")} />
         <Text style={styles.saloonName}>SALOON DE REINO</Text>
       </View>
 
       <View>
         <Text>
-          Account Details on goods sold and profit made in the past six months{" "}
+          Account Details on Goods Sold and Profit Made in the Past Six Months{" "}
         </Text>
       </View>
 
@@ -86,11 +83,18 @@ export default function BuisnessDetails2({ navigation }) {
           <Text style={styles.buttonText}> Post a Review</Text>
         </TouchableOpacity>
       </View> */}
+      {/* <View style={styles.bottons}> */}
       <View style={styles.nextbutton}>
         <TouchableOpacity onPress={() => navigation.navigate("AllBuisness")}>
           <Text style={styles.nextText}>Post a review</Text>
         </TouchableOpacity>
       </View>
+      {/* <View style={styles.nextbutton}>
+        <TouchableOpacity onPress={() => navigation.navigate("AllBuisness")}>
+          <Text style={styles.nextText}>Invest</Text>
+        </TouchableOpacity>
+      </View> */}
+      {/* </View> */}
     </View>
   );
 }
@@ -163,7 +167,7 @@ const styles = StyleSheet.create({
   nextbutton: {
     height: 50,
     width: 150,
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,
@@ -175,5 +179,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 15,
     fontWeight: "bold",
+  },
+  bottons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });

@@ -1,14 +1,21 @@
 import React from "react";
-import { View, Text, Image,StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Rating } from "react-native-ratings";
 
-export default function Buisness({navigation, ...props}) {
-  const {name,products,rating, rate, image} = props;
+export default function Buisness({ navigation, ...props }) {
+  const { name, products, rating, rate, image } = props;
   return (
     <View style={styles.container}>
-      <Image source={image} style={styles.image} resizeMethod="auto" resizeMode="center"  />
+      <Image
+        source={image}
+        style={styles.image}
+        resizeMethod="auto"
+        resizeMode="center"
+      />
       <View style={styles.details_container}>
-        <Text style={styles.title} numberOfLines={1}>{name}</Text>
+        <Text style={styles.title} numberOfLines={1}>
+          {name}
+        </Text>
         <Text>{products}</Text>
         <View>
           <Rating
@@ -20,11 +27,11 @@ export default function Buisness({navigation, ...props}) {
         </View>
       </View>
       <View style={styles.button_container}>
-        <TouchableOpacity 
-          style={styles.rate_button} 
-          onPress={()=>navigation.navigate("BuisnessDetails1", props)}
+        <TouchableOpacity
+          style={styles.rate_button}
+          onPress={() => navigation.navigate("BuisnessDetails1", props)}
         >
-          <Text style={{color: "white"}}>Rate</Text>
+          <Text style={{ color: "white" }}>View</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -46,24 +53,24 @@ const styles = StyleSheet.create({
 
   details_container: {
     // flex: 6,
-    flex: 1
+    flex: 1,
   },
 
   button_container: {
     // flex: 2,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
 
   title: {
     fontSize: 15,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
 
   rate_button: {
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     padding: 16,
-    borderRadius: 5
+    borderRadius: 5,
   },
 
   image: {
@@ -73,6 +80,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginHorizontal: 2,
     borderRadius: 100,
-    marginRight: 10
-  }
-})
+    marginRight: 10,
+  },
+});

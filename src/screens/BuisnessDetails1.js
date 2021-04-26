@@ -34,7 +34,6 @@ export default function BuisnessDetails1({
           keyExtractor={(_, index) => `${index}`}
         />
 
-      
         <View>
           <Text style={styles.textinfo}>{props.description}</Text>
           {moreImages?.[0] && (
@@ -45,7 +44,6 @@ export default function BuisnessDetails1({
             <Image style={styles.image1} source={moreImages[1]} />
           )}
         </View>
-          
 
         <View
           style={{
@@ -54,7 +52,7 @@ export default function BuisnessDetails1({
           }}
         >
           {contact?.location && <Text>Location: {contact?.location}</Text>}
-         {contact?.tel && <Text>tel: {contact?.tel}</Text>}
+          {contact?.tel && <Text>tel: {contact?.tel}</Text>}
           {contact?.email && <Text>Email: {contact?.email}</Text>}
           {props.capital && <Text>Start Capital: {props.capital} ghc</Text>}
         </View>
@@ -72,11 +70,9 @@ export default function BuisnessDetails1({
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     alignItems: "center",
     marginVertical: 20,
     marginHorizontal: 20,
-    //  marginVertical:20,
     paddingBottom: 50,
     justifyContent: "space-around",
   },
@@ -93,8 +89,7 @@ const styles = StyleSheet.create({
 
   details: {
     flexDirection: "row",
-    // marginVertical:20,
-    // marginHorizontal:7,
+
     flex: 1,
   },
   image1: {
@@ -102,9 +97,6 @@ const styles = StyleSheet.create({
     width: 340,
     resizeMode: "cover",
     borderRadius: 20,
-    // flex: 1,
-    // marginHorizontal: 2,
-    // marginVertical:15
   },
 
   buisnessName: {
@@ -137,7 +129,7 @@ const styles = StyleSheet.create({
   nextbutton: {
     height: 50,
     width: 150,
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,

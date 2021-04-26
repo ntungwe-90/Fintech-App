@@ -7,21 +7,21 @@ import {
   FlatList,
 } from "react-native";
 import Products from "../screens/Products";
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
 
-export default function OwnersProduct({navigation}) {
+export default function OwnersProduct({ navigation }) {
   const products = [
     { productname: "laptop", price: "1500" },
     { productname: "AC     ", price: "2000" },
     { productname: "Phones", price: "1000" },
     { productname: "Chargers", price: "5000" },
-    { productname: "Fan   ", price:   "1500 " },
+    { productname: "Fan   ", price: "1500 " },
     { productname: "Tv   ", price: "1200" },
     { productname: "Fridge", price: "700" },
   ];
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={products}
         renderItem={({ item }) => {
@@ -30,19 +30,32 @@ export default function OwnersProduct({navigation}) {
         keyExtractor={(item) => item.price}
       />
 
-      <View >
-        <TouchableOpacity onPress={() => navigation.navigate("ProductList")}>
-      <Ionicons name="add-circle-outline" size={54} color="#3b76ad" style={styles. icon} />
-      </TouchableOpacity>
+      <View style={styles.mainIcon}>
+        <TouchableOpacity onPress={() => navigation.navigate("AddProduct")}>
+          <Ionicons
+            name="add-circle-outline"
+            size={54}
+            color="#ae7a84"
+            style={styles.icon}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  icon:{
-    marginTop:50,
-    alignSelf:"flex-end"
+  container: {
+    flex: 1,
+  },
 
-  }
-})
+  mainIcon: {
+    position: "absolute",
+    bottom: 30,
+    right: 20,
+  },
+  icon: {
+    marginTop: 50,
+    alignSelf: "flex-end",
+  },
+});
