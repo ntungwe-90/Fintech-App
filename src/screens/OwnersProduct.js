@@ -21,7 +21,7 @@ export default function OwnersProduct({ navigation }) {
   ];
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={products}
         renderItem={({ item }) => {
@@ -30,12 +30,12 @@ export default function OwnersProduct({ navigation }) {
         keyExtractor={(item) => item.price}
       />
 
-      <View>
+      <View style={styles.mainIcon}>
         <TouchableOpacity onPress={() => navigation.navigate("AddProduct")}>
           <Ionicons
             name="add-circle-outline"
             size={54}
-            color="#3b76ad"
+            color="#ae7a84"
             style={styles.icon}
           />
         </TouchableOpacity>
@@ -45,6 +45,15 @@ export default function OwnersProduct({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+  mainIcon: {
+    position: "absolute",
+    bottom: 30,
+    right: 20,
+  },
   icon: {
     marginTop: 50,
     alignSelf: "flex-end",

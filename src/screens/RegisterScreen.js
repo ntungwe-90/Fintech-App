@@ -6,10 +6,18 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  ActivityIndicator,
   Image,
 } from "react-native";
+import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import { createEmailAccount, registerError } from "../redux/actions";
+
+const PencilIcon = (
+  <MaterialCommunityIcons name="pencil-outline" size={24} color="#aaaaaa" />
+);
 
 class RegisterScreen extends Component {
   constructor(props) {
@@ -34,6 +42,7 @@ class RegisterScreen extends Component {
     //   this.props.registerError("Passwords do not match");
     //   return;
     // }
+    this.setState({ loading: true });
     console.log("fffffdgrtg");
     this.props.createEmailAccount(this.state.email, this.state.password);
   };
@@ -42,16 +51,86 @@ class RegisterScreen extends Component {
     const { navigation, auth } = this.props;
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <Image style={styles.image} source={require("../../assets/logo.png")} />
-        <View style={styles.loginTextContainer}>
-          <Text style={styles.loginText}>Sign up</Text>
+        <Text style={styles.signupText}>Sign up</Text>
+        <View>
+          {auth.error.login && (
+            <Text style={{ color: "red" }}>{auth.error.login}</Text>
+          )}
+          <View style={styles.form}>
+            <Text style={styles.label}>First Name</Text>
+            <View style={styles.inputGroup}>
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="#aaaaaa"
+                placeholder="First name"
+                value={this.state.firstName}
+                onChangeText={(text) => {
+                  this.handleUpdateState("firstName", text);
+                }}
+              />
+              {PencilIcon}
+            </View>
+            <Text style={styles.label}>Last Name</Text>
+            <View style={styles.inputGroup}>
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="#aaaaaa"
+                placeholder="Last name"
+                value={this.state.lastName}
+                onChangeText={(text) => {
+                  this.handleUpdateState("lastName", text);
+                }}
+              />
+              {PencilIcon}
+            </View>
+            <Text style={styles.label}>Email</Text>
+            <View style={styles.inputGroup}>
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="#aaaaaa"
+                placeholder="Email"
+                value={this.state.Email}
+                onChangeText={(text) => {
+                  this.handleUpdateState("email", text);
+                }}
+              />
+              <Feather name="user" size={24} color="#aaaaaa" />
+            </View>
+            <Text style={styles.label}>Password</Text>
+            <View style={styles.inputGroup}>
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="#aaaaaa"
+                secureTextEntry={true}
+                placeholder="Password"
+                value={this.state.password}
+                onChangeText={(text) => {
+                  this.handleUpdateState("password", text);
+                }}
+              />
+              <Ionicons name="md-key-outline" size={24} color="#aaaaaa" />
+            </View>
+          </View>
+        </View>
+        <View>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={this.handleOnSubmit}
+          >
+            {this.state.loading ? (
+              <ActivityIndicator animating={true} color="#fff" />
+            ) : (
+              <Text style={styles.buttonText}>Register</Text>
+            )}
+          </TouchableOpacity>
+        </View>
+        {/* <View style={styles.signupTextContainer}>
+          <Text style={styles.signupText}>Sign up</Text>
         </View>
         <View>
           {auth.error.register && (
             <Text style={{ color: "red" }}>{auth.error.register}</Text>
           )}
-          {/* <View style={styles.registration}>
-           <Text style={styles.label}>First Name</Text> */}
           <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
@@ -61,7 +140,6 @@ class RegisterScreen extends Component {
               this.handleUpdateState("firstName", text);
             }}
           />
-          {/* </View> */}
           <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
@@ -101,10 +179,10 @@ class RegisterScreen extends Component {
             <Text style={styles.buttonText}>sign up</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.noAccountContainer}>
+        <View style={styles.haveAccountContainer}>
           <Text style={styles.noAccountText}>Dont have an account?</Text>
           <Text style={styles.signupText}>Sign up</Text>
-        </View>
+        </View> */}
       </ScrollView>
     );
   }
@@ -112,78 +190,65 @@ class RegisterScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 50,
-    marginVertical: 25,
-    // flex:1,
-    // justifyContent:"space-around"
-  },
-  image: {
-    alignSelf: "center",
-    width: 100,
-    height: 80,
-    borderRadius: 80,
-  },
-  loginText: {
-    fontSize: 50,
-    color: "#3b76ad",
-    fontWeight: "bold",
-    alignSelf: "center",
-    marginVertical: 20,
-  },
-  loginTextContainer: {
-    marginBottom: 30,
+    flex: 1,
+    padding: 40,
+    // marginVertical: 50,
   },
 
-  // registration: {
-  //       flexDirection: "row",
-  //       justifyContent: "space-between",
-  //       // borderBottomWidth: 2,
-  //       alignItems: "center",
-  //       // borderBottomColor: "lightgrey",
-  //       marginHorizontal: 10,
-  //       marginVertical: 5,
-  //     },
+  signupText: {
+    fontSize: 30,
+    color: "#ae7a84",
+    fontWeight: "bold",
+    marginBottom: 40,
+    textAlign: "center",
+  },
 
   label: {
-    fontSize: 20,
-    // color:"grey"
+    marginBottom: 10,
+    fontSize: 17,
+    color: "#202020",
   },
+
+  inputGroup: {
+    borderWidth: 1,
+    borderColor: "#d2d2d2",
+    borderRadius: 5,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
+    alignItems: "center",
+    marginBottom: 20,
+  },
+
   input: {
-    borderBottomWidth: 2,
-    borderBottomColor: "#3b76ad",
-    fontSize: 20,
-    height: 50,
-    marginTop: 20,
+    fontSize: 17,
+    flexGrow: 1,
   },
-  forgotPassword: {
-    alignSelf: "flex-end",
-    marginVertical: 3,
-    color: "#3b76ad",
-  },
+
   buttonContainer: {
     height: 50,
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
-    marginVertical: 50,
+    borderRadius: 5,
+    marginTop: 30,
   },
+
   buttonText: {
     color: "white",
-    fontSize: 25,
-    fontWeight: "bold",
+    fontSize: 18,
+    // fontWeight: "bold",
   },
-  noAccountContainer: {
+
+  haveAccountContainer: {
     flexDirection: "row",
     justifyContent: "center",
+    marginTop: 20,
   },
+
   noAccountText: {
     marginRight: 10,
     fontSize: 16,
-  },
-  signupText: {
-    fontSize: 16,
-    color: "#3b76ad",
   },
 });
 

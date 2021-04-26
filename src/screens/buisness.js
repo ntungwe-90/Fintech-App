@@ -31,7 +31,7 @@ export default function Buisness({ navigation, ...props }) {
           style={styles.rate_button}
           onPress={() => navigation.navigate("BuisnessDetails1", props)}
         >
-          <Text style={{ color: "white" }}>Rate</Text>
+          <Text style={{ color: "white" }}>View</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
 
   rate_button: {
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     padding: 16,
     borderRadius: 5,
   },

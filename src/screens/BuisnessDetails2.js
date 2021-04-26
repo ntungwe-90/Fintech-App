@@ -83,7 +83,7 @@ export default function BuisnessDetails2({ navigation }) {
           <Text style={styles.buttonText}> Post a Review</Text>
         </TouchableOpacity>
       </View> */}
-      <View style={styles.bottons}>
+      {/* <View style={styles.bottons}> */}
       <View style={styles.nextbutton}>
         <TouchableOpacity onPress={() => navigation.navigate("AllBuisness")}>
           <Text style={styles.nextText}>Post a review</Text>
@@ -94,7 +94,7 @@ export default function BuisnessDetails2({ navigation }) {
           <Text style={styles.nextText}>Invest</Text>
         </TouchableOpacity>
       </View> */}
-      </View>
+      {/* </View> */}
     </View>
   );
 }
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   nextbutton: {
     height: 50,
     width: 150,
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,
@@ -180,8 +180,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
   },
-  bottons:{
-    flexDirection:"row",
-    justifyContent:"space-between"
-  }
+  bottons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
 });

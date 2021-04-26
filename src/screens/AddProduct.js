@@ -10,8 +10,17 @@ import {
   Pressable,
   Platform,
 } from "react-native";
+import { Feather } from "@expo/vector-icons";
+import { Entypo } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { connect } from "react-redux";
+
 // import {AddProduct} from "../redux/actions"
+
+const PencilIcon = (
+  <MaterialCommunityIcons name="pencil-outline" size={24} color="#aaaaaa" />
+);
 
 class AddProduct extends Component {
   constructor(props) {
@@ -27,7 +36,6 @@ class AddProduct extends Component {
       [name]: value,
     });
   };
-  
 
   handleOnSubmit = () => {
     // if (this.state.password !== this.state.comfirm) {
@@ -36,9 +44,12 @@ class AddProduct extends Component {
     //   return;
     // }
     console.log("fffffdgrtg");
-    this.props.AddProduct(this.state.productname, this.state.price, this.state.description);
+    this.props.AddProduct(
+      this.state.productname,
+      this.state.price,
+      this.state.description
+    );
   };
-
 
   render() {
     const { navigation, auth } = this.props;
@@ -47,8 +58,8 @@ class AddProduct extends Component {
         <View style={styles.loginTextContainer}>
           <Text style={styles.loginText}>Add New Products</Text>
         </View>
-       
-        <View>
+
+        {/* <View>
           <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
@@ -78,10 +89,57 @@ class AddProduct extends Component {
               this.handleUpdateState("description", text);
             }}
           />
+        </View> */}
+        <View style={styles.form}>
+          <Text style={styles.label}>Product Name</Text>
+          <View style={styles.inputGroup}>
+            <TextInput
+              style={styles.input}
+              placeholderTextColor="#aaaaaa"
+              placeholder="Product Name"
+              value={this.state.ProductName}
+              onChangeText={(text) => {
+                this.handleUpdateState("Product Name", text);
+              }}
+            />
+            <Feather name="user" size={24} color="#aaaaaa" />
+          </View>
+          <Text style={styles.label}>Price</Text>
+          <View style={styles.inputGroup}>
+            <TextInput
+              style={styles.input}
+              placeholderTextColor="#aaaaaa"
+              secureTextEntry={true}
+              placeholder="Price"
+              value={this.state.price}
+              onChangeText={(text) => {
+                this.handleUpdateState("price", text);
+              }}
+            />
+            {/* <Ionicons name="md-key-outline" size={24} color="#aaaaaa" /> */}
+            <Entypo name="price-tag" size={24} color="#aaaaaa" />
+          </View>
+          <Text style={styles.label}>Description</Text>
+          <View style={styles.inputGroup}>
+            <TextInput
+              style={styles.input}
+              placeholderTextColor="#aaaaaa"
+              secureTextEntry={true}
+              placeholder="Description"
+              value={this.state.Description}
+              onChangeText={(text) => {
+                this.handleUpdateState("Description", text);
+              }}
+            />
+            {/* <Ionicons name="md-key-outline" size={24} color="#aaaaaa" /> */}
+            {PencilIcon}
+          </View>
         </View>
 
         <View style={styles.nextbutton}>
-          <TouchableOpacity onPress={() => navigation.navigate("OwnersProduct")}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("OwnersProduct")}
+          >
             <Text style={styles.nextText}>ADD</Text>
           </TouchableOpacity>
         </View>
@@ -105,6 +163,22 @@ const styles = StyleSheet.create({
     color: "#3b76ad",
     fontWeight: "bold",
     alignSelf: "center",
+  },
+  label: {
+    marginBottom: 10,
+    fontSize: 17,
+    color: "#202020",
+  },
+
+  inputGroup: {
+    borderWidth: 1,
+    borderColor: "#d2d2d2",
+    borderRadius: 5,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
+    alignItems: "center",
+    marginBottom: 30,
   },
   loginTextContainer: {
     marginBottom: 30,
@@ -154,7 +228,7 @@ const styles = StyleSheet.create({
   nextbutton: {
     height: 50,
     width: 150,
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,

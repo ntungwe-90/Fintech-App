@@ -1,30 +1,43 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  useWindowDimensions,
+} from "react-native";
 
 export default function LandingPage({ navigation }) {
+  const { width } = useWindowDimensions();
+  console.log({ width });
+
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require("../../assets/welcome.png")}
-      />
-      <View style={styles.slidebutton}>
-        <Text style={styles.slides}></Text>
-        <Text style={styles.slides2}></Text>
-        <Text style={styles.slides}></Text>
+      <Text style={styles.title}>Business Point</Text>
+      <Text style={styles.subtitle}>
+        Discover and Invest in New Micro Businesses
+      </Text>
+      <View
+        style={{
+          width,
+          height: width,
+          borderRadius: width,
+          overflow: "hidden",
+          ...styles.hero,
+        }}
+      >
+        <Image
+          style={styles.heroImage}
+          source={require("../../assets/handphone.png")}
+        />
       </View>
-      <View style={styles.appinfo}>
-        <Text style={styles.text1}>PROTOTYPING</Text>
-      <Text>  DISCOVER AND INVEST IN NEW MICRO BUSINESSES
-        </Text>
-       
-      </View>
-
-      <View style={styles.nextbutton}>
-        <TouchableOpacity onPress={() => navigation.navigate("About")}>
-          <Text style={styles.nextText}>GET STARTED</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={styles.nextbutton}
+        onPress={() => navigation.navigate("About")}
+      >
+        <Text style={styles.nextText}>GET STARTED</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -32,10 +45,35 @@ export default function LandingPage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     justifyContent: "space-around",
+    paddingVertical: 50,
+    paddingHorizontal: 30,
   },
-  image: {
+
+  title: {
+    fontSize: 30,
+    marginBottom: 15,
+    fontWeight: "bold",
+  },
+
+  subtitle: {
+    color: "grey",
+    fontSize: 17,
+  },
+
+  hero: {
+    // borderRadius: sWidth,
+    // height: sWidth,
+    // width: sWidth,
+    position: "relative",
+    left: -60,
+    marginVertical: 30,
+  },
+
+  heroImage: {
     height: 450,
     width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
 
   slidebutton: {
@@ -64,26 +102,29 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
 
-  text1:{
-    fontWeight:"bold"
+  text1: {
+    fontWeight: "bold",
   },
 
   nextbutton: {
-    height: 50,
-    width: 150,
-    marginTop:40,
-    backgroundColor: "blue",
+    // height: 50,
+    // width: 150,
+    marginTop: 40,
+    backgroundColor: "#ae7a84",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 30,
-    alignSelf:"center"
+    borderRadius: 5,
+    alignSelf: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     // marginVertical: 50,
     // marginHorizontal:50
   },
+
   nextText: {
     color: "white",
     fontSize: 15,
-    fontWeight: "bold",
+    // fontWeight: "bold",
   },
 });
 // export default function DecisionPage({ navigation }) {

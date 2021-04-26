@@ -20,7 +20,7 @@ class UploadBuisness extends Component {
     this.state = {
       fullName: "",
       businessName: "",
-      image: require("../../assets/logo.png"),
+      image: require("../../assets/casino2.jpg"),
       // products: "",
       rate: "",
       location: "",
@@ -69,7 +69,7 @@ class UploadBuisness extends Component {
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.loginTextContainer}>
-          <Text style={styles.loginText}>Business Info</Text>
+          {/* <Text style={styles.loginText}>Business Info</Text> */}
         </View>
         <View>
           <Text>profile picture</Text>
@@ -172,7 +172,6 @@ const styles = StyleSheet.create({
     color: "#3b76ad",
     fontWeight: "bold",
     alignSelf: "center",
-   
   },
   loginTextContainer: {
     marginBottom: 30,
@@ -180,11 +179,10 @@ const styles = StyleSheet.create({
 
   label: {
     fontSize: 20,
-   
   },
   input: {
     borderBottomWidth: 2,
-    borderBottomColor: "#3b76ad",
+    borderBottomColor: "#ae7a84",
     fontSize: 20,
     height: 50,
     marginTop: 20,
@@ -196,7 +194,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     height: 50,
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
@@ -223,7 +221,7 @@ const styles = StyleSheet.create({
   nextbutton: {
     height: 50,
     width: 150,
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,

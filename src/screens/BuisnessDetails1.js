@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   nextbutton: {
     height: 50,
     width: 150,
-    backgroundColor: "#3b76ad",
+    backgroundColor: "#ae7a84",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,

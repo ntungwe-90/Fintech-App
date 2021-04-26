@@ -9,7 +9,7 @@ function Navigator(props) {
   // console.log(props.loggedIn)
   return (
     <Fragment>
-      <StatusBar backgroundColor="#3b76ad" />
+      <StatusBar backgroundColor="#ae7a84" />
       <NavigationContainer>
         {props.loggedIn ? <MainNavigation /> : <AuthNavigation />}
       </NavigationContainer>

@@ -121,12 +121,12 @@ const buisness = [
 function AllBuisness({ navigation, ...props }) {
   return (
     <View style={styles.container}>
-      <View style={styles.image_conainer}>
+      {/* <View style={styles.image_conainer}>
         <Image
           source={require("../../assets/logo.png")}
           style={styles.image5}
         />
-      </View>
+      </View> */}
       <View style={styles.flatlist}>
         <FlatList
           data={[...buisness, ...props.buisness]}

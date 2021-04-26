@@ -1,7 +1,6 @@
 import React from "react";
-import { View, StyleSheet, Text,  } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-
 
 export default function Products({ productname, price }) {
   return (
@@ -15,10 +14,8 @@ export default function Products({ productname, price }) {
       </View>
 
       <View style={styles.iconContainer}>
-        <AntDesign name="delete" size={24} color="#3b76ad" />
+        <AntDesign name="delete" size={24} color="red" />
       </View>
-
-     
     </View>
   );
 }
@@ -28,7 +25,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flex: 1,
     padding: 15,
-   
   },
 
   infoContainer: {
