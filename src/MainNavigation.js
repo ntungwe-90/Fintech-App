@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, View, Pressable } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { connect } from "react-redux";
 import LandingPage from "./screens/LandigPage";
@@ -15,12 +15,14 @@ import UploadBuisness from "./screens/UploadBuisness";
 import BusinessOwner from "./screens/BusinessOwnerScreen";
 import OwnersProduct from "./screens/OwnersProduct";
 import Products from "./screens/Products";
+import HomeScreen from "./screens/HomeScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import ProductList from "./screens/ProductList";
 import AddProduct from "./screens/AddProduct";
 import { logout } from "./redux/actions";
+
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
@@ -34,7 +36,7 @@ function MyTabs() {
     >
       <Tab.Screen
         name="Products"
-        component={Products}
+        // component={Products}
         options={{
           tabBarLabel: "Business Info",
           tabBarIcon: ({ color, size }) => (
@@ -42,7 +44,8 @@ function MyTabs() {
           ),
         }}
         name="BusinessOwner"
-        component={BusinessOwner}
+        // component={BusinessOwner}
+        component={HomeScreen}
       />
 
       <Tab.Screen
@@ -56,6 +59,18 @@ function MyTabs() {
         name="OwnersProduct"
         component={OwnersProduct}
       />
+
+      <Tab.Screen
+        options={{
+          tabBarLabel: "All Businesses",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="menu" color={color} size={size} />
+            // <MaterialCommunityIcons name="bell"
+          ),
+        }}
+        name="AllBuisness"
+        component={AllBuisness}
+      />
     </Tab.Navigator>
   );
 }
@@ -63,9 +78,11 @@ function MyTabs() {
 const Stack = createStackNavigator();
 
 function Navigation(props) {
+  console.log({props})
   return (
     <Stack.Navigator
-      initialRouteName={props.newUser ? "UploadBuisness" : "OwnersProduct"}
+      // initialRouteName={props.newUser ? "UploadBuisness" : "OwnersProduct"}
+      initialRouteName={props.newUser ? "UploadBuisness" : "BusinessOwner"}
       //  AllBuisness
       screenOptions={{
         title: null,
@@ -113,7 +130,7 @@ function Navigation(props) {
         }}
         name="BuisnessDetails1"
         component={BuisnessDetails1}
-      />
+        />
 
       <Stack.Screen
         options={{
@@ -129,14 +146,23 @@ function Navigation(props) {
         }}
         name="UploadBuisness"
         component={UploadBuisness}
-      />
+      /> 
 
       <Stack.Screen
         options={{
           title: "Business profile",
+          header: () => null,
         }}
         name="BusinessOwner"
         component={MyTabs}
+      />
+
+      <Stack.Screen
+        name="MyProfile"
+        options={{
+          title: "My profile"
+        }}
+        component={BusinessOwner}
       />
 
       {/* <Stack.Screen name="OwnerProduct" component={OwnersProduct} /> */}

@@ -6,7 +6,10 @@ const initialState = {
   loggedIn: false,
   error: {},
   newUser: false,
-  buisness,
+  buisness: [],
+  mybuisnesses: [
+    
+  ]
 };
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -50,7 +53,8 @@ const reducer = (state = initialState, {type, payload}) => {
       // buisness.push(payload)
       return {
         ...state,
-        buisness: [...(state.buisness || []), payload]
+        buisness: [...(state.buisness || []), payload],
+        mybuisnesses: [...state.mybuisnesses, payload]
       }
     default:
       return state;

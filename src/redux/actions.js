@@ -73,11 +73,16 @@ export function loginError(error) {
 }
 
 export function uploadBusiness(details) {
-  
-    return {
+  return async (dispatch) => {
+    const db = firebase.firestore()
+    db.collection("buiness").add(details).then(res => {
+      console.log(res)
+      dispatch({
         type: "UPLOAD_BUSINESS",
-        payload: details
-    };
+        payload: {...details, id: res.id}
+      })
+    })
+  };
 }
 
 

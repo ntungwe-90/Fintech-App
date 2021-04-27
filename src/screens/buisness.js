@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { Rating } from "react-native-ratings";
+// import { Rating } from "react-native-ratings";
+import Rating from "../components/Rating"
 
 export default function Buisness({ navigation, ...props }) {
   const { name, products, rating, rate, image } = props;
@@ -20,8 +21,9 @@ export default function Buisness({ navigation, ...props }) {
         <View>
           <Rating
             readonly={true}
-            imageSize={15}
+            size={20}
             tintColor="#e6ebe6"
+            rating={rating}
             style={{ paddingVertical: 10, alignSelf: "flex-start" }}
           />
         </View>

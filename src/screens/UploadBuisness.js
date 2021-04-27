@@ -19,7 +19,7 @@ class UploadBuisness extends Component {
     super(props);
     this.state = {
       fullName: "",
-      businessName: "",
+      name: "",
       image: require("../../assets/casino2.jpg"),
       // products: "",
       rate: "",
@@ -64,6 +64,14 @@ class UploadBuisness extends Component {
     this.props.navigation.navigate("BusinessOwner");
   };
 
+  // image: require("../assets/saloon.jpg"),
+  //   name: "SALON",
+  //   products: "manicure,pendicure massage",
+  //   description: "WE OFFER MANICURES, PENDICURES, MASSAGES AND MOBILE MONEY",
+  //   Rating: "34",
+  //   rate: "rate",
+  //   photos
+
   render() {
     const { navigation, auth } = this.props;
     return (
@@ -94,7 +102,7 @@ class UploadBuisness extends Component {
             placeholder="Business name"
             value={this.state.name}
             onChangeText={(text) => {
-              this.handleUpdateState("businessName", text);
+              this.handleUpdateState("name", text);
             }}
           />
 

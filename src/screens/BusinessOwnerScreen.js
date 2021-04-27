@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
+
 export default function BusinessOwnerScreen({ navigation }) {
   return (
     <ScrollView>
