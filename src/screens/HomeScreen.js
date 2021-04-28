@@ -1,8 +1,9 @@
-import React from "react";
-import { Text, View, StyleSheet, ScrollView, Pressable, Flatlist } from "react-native";
+import React, {useEffect, useState} from "react";
+import { Text, View, StyleSheet, ScrollView, Pressable, FlatList, ActivityIndicator } from "react-native";
 import { connect } from "react-redux";
 import { Feather } from "@expo/vector-icons";
 import Buisness from "./buisness";
+import firebase from "../firebase/firebase";
 
 const ScreenHeader = ({ navigation }) => {
   return (
@@ -47,28 +48,48 @@ const ScreenHeader = ({ navigation }) => {
 };
 
 function HomeScreen(props) {
-  const uploaded = props.mybuisnesses;
+  const uploaded = props.mybuisnesses
+  const [loading, setLoading]=useState(true)
+
+  const fetchBusinessesFromDatabase = () => {
+    firebase.firestore().collection("buiness").get()
+      .then(query => {
+        const buisnessList = [];
+        query.forEach(doc => {
+          // console.log(doc.data())
+          buisnessList.push(doc.data())
+        });
+        props.dispatch({
+          type: "POPULATE_BUISNESS",
+          payload: buisnessList,
+        })
+      })
+      .finally(() => setLoading(false))
+  }
+
+  useEffect(() => {
+    fetchBusinessesFromDatabase()
+  }, [])
+
   return (
     <View>
       <ScreenHeader navigation={props.navigation} />
-      <ScrollView style={{
-				// flex: 1,
-			}}>
-        {uploaded.length ? (
-          <Flatlist
-            data={uploaded}
-            renderItem={({ item }) => <Buisness {...item} navigation={navigation} />}
-            keyExtractor={(item) => item.id}
-          />
-        ) : (
-					<Text style={{
-						marginTop: 30,
-						alignSelf: "center",
-					}}>
-						You don't have any businesses uploaded yet
-					</Text>
-        )}
-      </ScrollView>
+      {uploaded.length ? (
+        <FlatList
+          data={uploaded}
+          renderItem={({ item }) => <Buisness {...item} navigation={props.navigation} />}
+          keyExtractor={(item) => item.id}
+        />
+      ) : loading ? (
+        <ActivityIndicator size="large" color="#ae7a84"/>
+      ) : (
+        <Text style={{
+          marginTop: 30,
+          alignSelf: "center",
+        }}>
+          You don't have any businesses uploaded yet
+        </Text>
+      )}
     </View>
   );
 }

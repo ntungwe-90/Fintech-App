@@ -9,6 +9,7 @@ import {
   Image,
   Pressable,
   Platform,
+  ActivityIndicator,
 } from "react-native";
 import { connect } from "react-redux";
 import * as ImagePicker from "expo-image-picker";
@@ -22,10 +23,11 @@ class UploadBuisness extends Component {
       name: "",
       image: require("../../assets/casino2.jpg"),
       // products: "",
-      rate: "",
+      rating: 0,
       location: "",
       phone: "",
       startCapital: "",
+      owner: props.user.id
     };
   }
 
@@ -60,8 +62,10 @@ class UploadBuisness extends Component {
   };
 
   handleBusinessUpload = () => {
-    this.props.uploadBusiness(this.state);
-    this.props.navigation.navigate("BusinessOwner");
+    this.setState({loading: true})
+    this.props.uploadBusiness(this.state, () => {
+      this.props.navigation.navigate("BusinessOwner")
+    });
   };
 
   // image: require("../assets/saloon.jpg"),
@@ -120,9 +124,9 @@ class UploadBuisness extends Component {
             style={styles.input}
             placeholderTextColor="#aaaaaa"
             placeholder="ratings"
-            value={this.state.ratings}
+            value={this.state.rating}
             onChangeText={(text) => {
-              this.handleUpdateState("rate", text);
+              this.handleUpdateState("rating", +text);
             }}
           />
           <TextInput
@@ -157,7 +161,11 @@ class UploadBuisness extends Component {
 
         <View style={styles.nextbutton}>
           <TouchableOpacity onPress={this.handleBusinessUpload}>
-            <Text style={styles.nextText}>upload</Text>
+            {this.state.loading ? (
+              <ActivityIndicator animating={true} color="#fff"/>
+            ) : (
+              <Text style={styles.nextText}>upload</Text>
+            )}
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -244,7 +252,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(() => ({}), { uploadBusiness })(UploadBuisness);
+export default connect((state) => ({user: state.user}), { uploadBusiness })(UploadBuisness);
 
 // const mapStateToProp = (state) => {
 //   return { auth: state };

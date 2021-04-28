@@ -2,7 +2,7 @@
 import {buisness} from "../dummy-data"
 
 const initialState = {
-  users: {},
+  user: {},
   loggedIn: false,
   error: {},
   newUser: false,
@@ -27,11 +27,17 @@ const reducer = (state = initialState, {type, payload}) => {
         loggedIn: true,
       };
     case "LOGGED_IN":
+      const {user} =payload
       return {
         ...state,
         loggedIn: true,
-        ...payload,
+        user ,
       };
+
+      case "LOGGED_OUT":
+        return {...state,
+        loggedIn:false
+      }
     case "DELETE_USER":
       const FilteredUsers = state.users.filter(
         (user) => user.id !== payload
@@ -56,6 +62,14 @@ const reducer = (state = initialState, {type, payload}) => {
         buisness: [...(state.buisness || []), payload],
         mybuisnesses: [...state.mybuisnesses, payload]
       }
+    
+    case "POPULATE_BUISNESS": 
+      console.log({user, payload})
+      return {
+        ...state,
+        buisness: payload,
+        mybuisnesses: payload.filter(biz => biz.owner === state.user.id),
+      }  
     default:
       return state;
   }

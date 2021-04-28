@@ -61,7 +61,7 @@ export default function About({ navigation }) {
         </Pressable>
         <Pressable
           style={styles.rate}
-          onPress={() => navigation.navigate("DecisionPage")}
+          onPress={() => navigation.navigate("AllBuisness")}
         >
           <Text>Rate</Text>
         </Pressable>
