@@ -28,7 +28,7 @@ export default function About({ navigation }) {
         </Pressable>
         <Image
             style={styles.image}
-            source={require("../../assets/logo.png")}
+            source={require("../../assets/bp.jpg")}
           />
         {/* <Fontisto name="flash" size={34} color="brown" /> */}
         {/* <Text>Logo</Text> */}
@@ -42,7 +42,7 @@ export default function About({ navigation }) {
           WITH INVESTORS, PEOPLE DISCOVER NEW EXCITING MICRO BUSINESSES AND THEY
           RATE THEIR SERVICES AND EVEN INVEST IN THEM. */}
           Business Point is a Mobile Application Which Connects Micro-Services
-          With Investors. Peole Discover New Exciting Micro Businesses And They
+          With Investors. People Discover New Exciting Micro Businesses And They
           Rate Their Services And Even Invest In Them.
         </Text>
 
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     marginTop:25,
     alignSelf: "center",
     width: 80,
-    height: 80,
+    height: 75,
     borderRadius: 80,
     // backgroundColor:"#ae7a84"
   },

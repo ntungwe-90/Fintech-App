@@ -10,21 +10,24 @@ import { collection, getDocs } from "firebase/firestore";
 function Navigator(props) {
   console.log(props.loggedIn)
   
+  const fetchBusinessesFromDatabase = () => {
+    firebase.firestore().collection("business").get()
+      .then(query => {
+        const buisnessList = [];
+        query.forEach(doc => {
+          buisnessList.push(doc.data())
+        });
+        props.dispatch({
+          type: "POPULATE_BUISNESS",
+          payload: buisnessList,
+        })
+      })
+      .finally(() => setLoading(false))
+  }
 
-  // const fetchBusinessesFromDatabase = async () => {
-  //   const buisnessList = [];
-  //   const querySnapshot = await getDocs(collection(firebase.firestore(), "buiness"));
-  //   querySnapshot.forEach((doc) => {
-  //     // doc.data() is never undefined for query doc snapshots
-  //     buisnessList.push(doc.data())
-  //   });
-  //   props.dispatch({
-  //     type: "POPULATE_BUISNESS",
-  //     payload: buisnessList,
-  //   })
-  // }
-
- 
+  useEffect(() => {
+    fetchBusinessesFromDatabase()
+  }, [])
 
   return (
     <Fragment>

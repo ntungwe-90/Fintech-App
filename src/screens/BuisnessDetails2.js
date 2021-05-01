@@ -7,17 +7,21 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
+import { connect } from "react-redux";
+import { updateBusiness } from "../redux/actions"
 // import { Rating } from "react-native-ratings";
 import Rating from "../components/Rating";
 
-export default function BuisnessDetails2({ navigation }) {
-  const [rating, setRating] = useState(0);
+function BuisnessDetails2({ navigation, route: { params: props }, updateBusiness: postFunc }) {
+  const [rating, setRating] = useState(props.rating || 0);
+  // const [loading, setLoading] = useState(false)
   return (
     <View style={styles.container}>
       <View>
-        <Image style={styles.image} source={require("../../assets/logo.png")} />
-        <Text style={styles.saloonName}>SALOON DE REINO</Text>
+        {/* <Image style={styles.image} source={require("../../assets/logo.png")} /> */}
+        <Text style={styles.saloonName}>{props.name}</Text>
       </View>
 
       <View>
@@ -27,46 +31,78 @@ export default function BuisnessDetails2({ navigation }) {
       </View>
 
       <View style={styles.profit}>
-        <Text>Products</Text>
-        <Text>Amounts</Text>
-        <Text>Profits</Text>
+        <Text>Product</Text>
+        <Text>Amount</Text>
+        { props.forwarded ? null : <Text>Profits</Text>}
       </View>
-      <View style={styles.profit}>
-        <Text>Wigs</Text>
-        <Text>5000</Text>
-        <Text>10000</Text>
-      </View>
-      <View style={styles.profit}>
-        <Text>Massage</Text>
-        <Text>6000</Text>
-        <Text>120000</Text>
-      </View>
-      <View style={styles.profit}>
-        <Text>Polish</Text>
-        <Text>1000</Text>
-        <Text>3000</Text>
-      </View>
-      <View style={styles.profit}>
-        <Text>Kits</Text>
-        <Text>1000</Text>
-        <Text>1500</Text>
-      </View>
-      <View style={styles.profit}>
-        <Text>Hair</Text>
-        <Text>5000</Text>
-        <Text>10000</Text>
-      </View>
+      {
+        props.forwarded ? (
+          props?.products?.map(({name, value}) => (
+            <View style={styles.profit}>
+              <Text style={{textTransform: "capitalize"}}>{name}</Text>
+              <Text>{value}</Text>
+            </View>    
+          ))
+        ) : (
+          <>
+            <View style={styles.profit}>
+              <Text>Wigs</Text>
+              <Text>5000</Text>
+              <Text>10000</Text>
+            </View>
+            <View style={styles.profit}>
+              <Text>Massage</Text>
+              <Text>6000</Text>
+              <Text>120000</Text>
+            </View>
+            <View style={styles.profit}>
+              <Text>Polish</Text>
+              <Text>1000</Text>
+              <Text>3000</Text>
+            </View>
+            <View style={styles.profit}>
+              <Text>Kits</Text>
+              <Text>1000</Text>
+              <Text>1500</Text>
+            </View>
+            <View style={styles.profit}>
+              <Text>Hair</Text>
+              <Text>5000</Text>
+              <Text>10000</Text>
+            </View>
+          </>
+        )
+      }
 
-      <View style={styles.total}>
-        <Text style={styles.Text}>TOTAL PROFIT = 100000GHC</Text>
-      </View>
+      {
+        props.forwarded ? (
+          <View style={styles.total}>
+            <Text style={styles.Text}>
+              TOTAL PROFIT = 
+              {props.products.reduce((total, {value}) => total + value, 0)}
+              GHC
+            </Text>
+          </View>
+        ) : (
+          <View style={styles.total}>
+            <Text style={styles.Text}>TOTAL PROFIT = 100000GHC</Text>
+          </View>
+        )
+      }
 
       <View style={styles.donation}>
         <Text style={styles.donationText}>
-          Amount needed to expand =3000000
+          Amount needed to expand = {
+            props.forwarded 
+              ? props.needed || "Not specified" 
+              : 3000000
+            }
         </Text>
         <Text style={styles.donationText}>
-          Contact: 0592286843 or violadavis@email.com
+          Contact: {props.forwarded 
+            ? props.phone || "Unknown"
+            : "0592286843 or violadavis@email.com"
+          }
         </Text>
       </View>
 
@@ -85,7 +121,19 @@ export default function BuisnessDetails2({ navigation }) {
       </View> */}
       {/* <View style={styles.bottons}> */}
       <View style={styles.nextbutton}>
-        <TouchableOpacity onPress={() => navigation.navigate("AllBuisness")}>
+        <TouchableOpacity onPress={() => {
+          const {forwarded, ...details} = props
+          // setLoading(true);
+          // console.log({...props, rating})
+          postFunc({...details, rating}, () => {
+            // setLoading(false)
+            navigation.navigate("AllBuisness")
+          })
+        }}>
+          {/* {loading 
+            ? <Text style={styles.nextText}>Post a review</Text>
+            : <ActivityIndicator animating={true} color="white"/>
+          } */}
           <Text style={styles.nextText}>Post a review</Text>
         </TouchableOpacity>
       </View>
@@ -185,3 +233,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 });
+
+export default connect(() => ({}), {updateBusiness})(BuisnessDetails2);

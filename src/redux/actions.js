@@ -77,18 +77,30 @@ export function loginError(error) {
 export function uploadBusiness(details, callback) {
   return async (dispatch) => {
     const db = firebase.firestore()
-    db.collection("buiness").add(details).then(res => {
-      console.log(res.id)
+    db.collection("business").doc(details.id).set(details).then(res => {
       dispatch({
         type: "UPLOAD_BUSINESS",
-        payload: {...details, id: res.id}
+        payload: details
       })
       return callback?.()
     })
     .catch(err => console.error(err))
   };
 }
-
+export function updateBusiness(details, callback) {
+  return async (dispatch) => {
+    const db = firebase.firestore()
+    console.log(details)
+    db.collection("business").doc(details.id).set(details).then(res => {
+      dispatch({
+        type: "UPDATE_BUSINESS",
+        payload: details
+      })
+      return callback?.()
+    })
+    .catch(err => console.error(err))
+  };
+}
 
 export function AddProduct(info){
   return{

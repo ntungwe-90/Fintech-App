@@ -49,27 +49,7 @@ const ScreenHeader = ({ navigation }) => {
 
 function HomeScreen(props) {
   const uploaded = props.mybuisnesses
-  const [loading, setLoading]=useState(true)
-
-  const fetchBusinessesFromDatabase = () => {
-    firebase.firestore().collection("buiness").get()
-      .then(query => {
-        const buisnessList = [];
-        query.forEach(doc => {
-          // console.log(doc.data())
-          buisnessList.push(doc.data())
-        });
-        props.dispatch({
-          type: "POPULATE_BUISNESS",
-          payload: buisnessList,
-        })
-      })
-      .finally(() => setLoading(false))
-  }
-
-  useEffect(() => {
-    fetchBusinessesFromDatabase()
-  }, [])
+  // const [loading, setLoading]=useState(true)
 
   return (
     <View>
@@ -80,8 +60,8 @@ function HomeScreen(props) {
           renderItem={({ item }) => <Buisness {...item} navigation={props.navigation} />}
           keyExtractor={(item) => item.id}
         />
-      ) : loading ? (
-        <ActivityIndicator size="large" color="#ae7a84"/>
+      // ) : loading ? (
+      //   <ActivityIndicator size="large" color="#ae7a84"/>
       ) : (
         <Text style={{
           marginTop: 30,

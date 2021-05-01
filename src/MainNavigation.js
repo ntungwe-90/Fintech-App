@@ -83,6 +83,7 @@ function Navigation(props) {
     <Stack.Navigator
       // initialRouteName={props.newUser ? "UploadBuisness" : "OwnersProduct"}
       initialRouteName={props.newUser ? "UploadBuisness" : "BusinessOwner"}
+      // BusinessOwner
       //  AllBuisness
       screenOptions={{
         title: null,

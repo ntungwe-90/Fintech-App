@@ -12,6 +12,7 @@ import {
   ActivityIndicator,
   FlatList,
 } from "react-native";
+import { v4 as uuidV4 } from "uuid";
 import { connect } from "react-redux";
 import * as ImagePicker from "expo-image-picker";
 import { Feather } from "@expo/vector-icons";
@@ -21,10 +22,14 @@ class UploadBuisness extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: uuidV4(),
       fullName: "",
       name: "",
       image: require("../../assets/casino2.jpg"),
-      products: "",
+      products: [
+        // {name: "", value: 0},
+        {}
+      ],
       rating: 0,
       location: "",
       phone: "",
@@ -65,7 +70,7 @@ class UploadBuisness extends Component {
   uploadProfilePhoto = async () => {
     const photo = await this.pickImage();
     if (photo) {
-      this.handleUpdateState("image", { uri: photo.uri });
+      this.setState({image: { uri: photo.uri }});
     }
   }
 
@@ -92,6 +97,16 @@ class UploadBuisness extends Component {
   //   rate: "rate",
   //   photos
 
+  insertProductRow = () => {
+    this.setState({ products: [...this.state.products, {}]})
+  }
+
+  updateProduct = (index, key, value) => {
+    const {products} = this.state;
+    products[index][key] = value;
+    this.setState({ products });
+  }
+
   render() {
     const { navigation, auth } = this.props;
     return (
@@ -101,7 +116,7 @@ class UploadBuisness extends Component {
         </View>
         <View>
           <Text style={styles.propic}>profile picture</Text>
-          <Pressable onPress={this.pickImage}>
+          <Pressable onPress={this.uploadProfilePhoto}>
             <Image style={styles.image} source={this.state.image} />
           </Pressable>
         </View>
@@ -126,15 +141,35 @@ class UploadBuisness extends Component {
             }}
           />
 
-          <TextInput
-            style={styles.input}
-            placeholderTextColor="#aaaaaa"
-            placeholder="products"
-            value={this.state.products}
-            onChangeText={(text) => {
-              this.handleUpdateState("products", text);
-            }}
-          />
+          <View style={{
+            ...styles.row,
+            marginTop: 15,
+          }}>
+            <Text>Products</Text>
+            <Pressable onPress={this.insertProductRow}>
+              <Feather name="plus" size={24} color="#000"/>
+            </Pressable>
+          </View>
+          <View style={{marginBottom: 15, paddingHorizontal: 15}}>
+            {this.state.products.map((prod, i) => (
+              <View style={{...styles.row, marginBottom: 10}} key={i}>
+                <TextInput
+                  style={{...styles.input, flexGrow: 1, marginRight: 15}}
+                  placeholderTextColor="#aaaaaa"
+                  placeholder="Name"
+                  value={this.state.products[i].name}
+                  onChangeText={(text) => this.updateProduct(i, "name", text)}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholderTextColor="#aaaaaa"
+                  placeholder="value"
+                  value={this.state.products[i].value}
+                  onChangeText={(text) => this.updateProduct(i, "value", +text)}
+                />
+              </View>
+            ))}
+          </View>
 
           <TextInput
             style={styles.input}
@@ -158,10 +193,20 @@ class UploadBuisness extends Component {
           <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
-            placeholder="phone"
+            placeholder="Phone"
             value={this.state.phone}
             onChangeText={(text) => {
               this.handleUpdateState("phone", text);
+            }}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholderTextColor="#aaaaaa"
+            placeholder="Email"
+            value={this.state.email}
+            onChangeText={(text) => {
+              this.handleUpdateState("email", text);
             }}
           />
           <TextInput
@@ -173,11 +218,19 @@ class UploadBuisness extends Component {
               this.handleUpdateState("startCapital", text);
             }}
           />
+          <TextInput
+            style={styles.input}
+            placeholderTextColor="#aaaaaa"
+            placeholder="Amount needed"
+            value={this.state.needed}
+            onChangeText={(text) => {
+              this.handleUpdateState("needed", text);
+            }}
+          />
+
 
           <View style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
+            ...styles.row,
             marginTop: 20,
             marginBottom: 10,
           }}>
@@ -215,6 +268,11 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
     // marginVertical: 5,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   image: {
     width: 150,

@@ -62,6 +62,18 @@ const reducer = (state = initialState, {type, payload}) => {
         buisness: [...(state.buisness || []), payload],
         mybuisnesses: [...state.mybuisnesses, payload]
       }
+
+    case "UPDATE_BUSINESS":
+      console.log({payload})
+      return {
+        ...state,
+        buisness: state.buisness.map((biz) => 
+          biz.id === payload.id ? payload : biz
+        ),
+        mybuisnesses: state.mybuisnesses.map((biz) => 
+          biz.id === payload.id ? payload : biz
+        )
+      }
     
     case "POPULATE_BUISNESS": 
       console.log({user, payload})

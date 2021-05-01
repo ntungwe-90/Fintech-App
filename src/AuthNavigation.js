@@ -11,6 +11,8 @@ import AllBuisness from "./screens/AllBuisness";
 import BuisnessDetails1 from "./screens/BuisnessDetails1";
 import BuisnessDetails2 from "./screens/BuisnessDetails2";
 import UploadBuisness from "./screens/UploadBuisness";
+import {TouchableOpacity, Text} from "react-native";
+
 
 const Stack = createStackNavigator();
 
@@ -22,7 +24,7 @@ export default function Navigation() {
         title: null,
         // header: () => null,
         headerStyle: {
-          backgroundColor: "#3b76ad",
+          backgroundColor: "#ae7a84",
         },
         headerTintColor: "white",
         headerTitleAlign: "center",
@@ -71,6 +73,58 @@ export default function Navigation() {
         }}
       />
       <Stack.Screen name="DecisionPage" component={DecisionPage} />
+      
+      <Stack.Screen
+        name="AllBuisness"
+        options={{
+          title: "All Business",
+          // headerRight: () => (
+          //   <TouchableOpacity style={{ marginRight: 20 }} >
+          //     <Text
+          //       style={{ color: "white", fontSize: 20, fontWeight: "bold" }}
+          //     >
+          //       Log Out
+          //     </Text>
+          //   </TouchableOpacity>
+          // ),
+        }}
+        component={AllBuisness}
+      />
+      
+      <Stack.Screen
+        name="BuisnessDetails1"
+        options={{
+          title: "BuisnessDetails1",
+          // headerRight: () => (
+          //   <TouchableOpacity style={{ marginRight: 20 }} >
+          //     <Text
+          //       style={{ color: "white", fontSize: 20, fontWeight: "bold" }}
+          //     >
+          //       Log Out
+          //     </Text>
+          //   </TouchableOpacity>
+          // ),
+        }}
+        component={BuisnessDetails1}
+      />
+      
+      <Stack.Screen
+        name="BuisnessDetails2"
+        options={{
+          title: "BuisnessDetails2",
+          // headerRight: () => (
+          //   <TouchableOpacity style={{ marginRight: 20 }} >
+          //     <Text
+          //       style={{ color: "white", fontSize: 20, fontWeight: "bold" }}
+          //     >
+          //       Log Out
+          //     </Text>
+          //   </TouchableOpacity>
+          // ),
+        }}
+        component={BuisnessDetails2}
+      />
+      
     </Stack.Navigator>
   );
 }

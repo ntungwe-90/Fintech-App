@@ -16,7 +16,6 @@ export default function BuisnessDetails1({
 }) {
   const { contact, moreImages } = props;
   const { width: screenWidth } = useWindowDimensions();
-  console.log(props)
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -93,7 +92,7 @@ export default function BuisnessDetails1({
         }
         <View style={styles.nextbutton}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("BuisnessDetails2")}
+            onPress={() => navigation.navigate("BuisnessDetails2", {...props, forwarded: !props.dummy})}
           >
             <Text style={styles.nextText}>Next</Text>
           </TouchableOpacity>

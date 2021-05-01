@@ -37,6 +37,7 @@ const buisness = [
       email: "saloonD@gmail.com",
     },
     capital: 100000,
+    dummy: true,
   },
   {
     image: require("../../assets/cafe.jpg"),
@@ -64,6 +65,7 @@ const buisness = [
       email: "restuaflash@gmail.com",
     },
     capital: 5000,
+    dummy: true,
   },
   {
     image: require("../../assets/casino2.jpg"),
@@ -90,6 +92,7 @@ const buisness = [
       email: "hotelez@gmail.com",
     },
     capital: 5000,
+    dummy: true,
   },
   {
     image: require("../../assets/s1.jpg"),
@@ -115,6 +118,7 @@ const buisness = [
       email: "hotelez@gmail.com",
     },
     capital: 5000,
+    dummy: true,
   },
 ];
 
