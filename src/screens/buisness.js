@@ -1,9 +1,11 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { Rating } from "react-native-ratings";
+// import { Rating } from "react-native-ratings";
+import Rating from "../components/Rating"
 
 export default function Buisness({ navigation, ...props }) {
-  const { name, products, rating, rate, image } = props;
+  const { name, products=[], rating, rate, image } = props;
+  console.log({products})
   return (
     <View style={styles.container}>
       <Image
@@ -16,12 +18,21 @@ export default function Buisness({ navigation, ...props }) {
         <Text style={styles.title} numberOfLines={1}>
           {name}
         </Text>
-        <Text>{products}</Text>
+        <Text>
+          {Array.prototype.isPrototypeOf(products) 
+            ? products
+              ?.slice?.(0, 2)
+              ?.reduce?.((output, {name}) => [...output, name], [])
+              ?.join(", ")
+            : products
+          }
+        </Text>
         <View>
           <Rating
             readonly={true}
-            imageSize={15}
+            size={20}
             tintColor="#e6ebe6"
+            rating={rating}
             style={{ paddingVertical: 10, alignSelf: "flex-start" }}
           />
         </View>

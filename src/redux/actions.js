@@ -1,13 +1,14 @@
 import firebase from "../firebase/firebase";
 
-export function createEmailAccount(email, password) {
+export function createEmailAccount({email, password, ...user}) {
   return async (dispatch) => {
     try {
-      console.log("create email function");
-      const user = await firebase
+      console.log("create email function", {email, password, ...user});
+      await firebase
         .auth()
         .createUserWithEmailAndPassword(email, password);
       console.log("after user");
+      await firebase.firestore().collection("users").doc(email).set({email, ...user})
       dispatch(loggedIn(user, true));
     } catch (error) {
       console.log("sign up error ", error);
@@ -19,11 +20,12 @@ export function createEmailAccount(email, password) {
 export function loginEmailAccount(email, password) {
   return async (dispatch) => {
     try {
-      const user = await firebase
+      await firebase
         .auth()
         .signInWithEmailAndPassword(email, password);
-      dispatch(loggedIn(user));
-      console.log(user)
+      const user = await firebase.firestore().collection("users").doc(email).get()
+      dispatch(loggedIn(user.data()));
+      console.log(user.data())
     } catch (error) {
         console.log(error)
       dispatch(loginError(error.message));
@@ -43,6 +45,7 @@ export function logout() {
 }
 
 function loggedIn(user, isNew=false) {
+  console.log("user")
   return {
     type: "LOGGED_IN",
     payload: {
@@ -51,10 +54,9 @@ function loggedIn(user, isNew=false) {
     },
   };
 }
-function loggedOut(user) {
+export function loggedOut(user) {
   return {
     type: "LOGGED_OUT",
-    payload: out,
   };
 }
 
@@ -72,14 +74,33 @@ export function loginError(error) {
   };
 }
 
-export function uploadBusiness(details) {
-  
-    return {
+export function uploadBusiness(details, callback) {
+  return async (dispatch) => {
+    const db = firebase.firestore()
+    db.collection("business").doc(details.id).set(details).then(res => {
+      dispatch({
         type: "UPLOAD_BUSINESS",
         payload: details
-    };
+      })
+      return callback?.()
+    })
+    .catch(err => console.error(err))
+  };
 }
-
+export function updateBusiness(details, callback) {
+  return async (dispatch) => {
+    const db = firebase.firestore()
+    console.log(details)
+    db.collection("business").doc(details.id).set(details).then(res => {
+      dispatch({
+        type: "UPDATE_BUSINESS",
+        payload: details
+      })
+      return callback?.()
+    })
+    .catch(err => console.error(err))
+  };
+}
 
 export function AddProduct(info){
   return{

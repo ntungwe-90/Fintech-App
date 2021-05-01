@@ -17,7 +17,7 @@ const buisness = [
     name: "SALON",
     products: "manicure,pendicure massage",
     description: "WE OFFER MANICURES, PENDICURES, MASSAGES AND MOBILE MONEY",
-    Rating: "34",
+    rating: 3,
     rate: "rate",
     photos: [
       require("../../assets/m2.jpg"),
@@ -37,13 +37,14 @@ const buisness = [
       email: "saloonD@gmail.com",
     },
     capital: 100000,
+    dummy: true,
   },
   {
     image: require("../../assets/cafe.jpg"),
     name: "Restaurant",
     products: " food, drinks, dance",
     description: "WE Specialise in both continental and traditional meals",
-    Rating: "34",
+    rating: 4,
     rate: "rate",
 
     photos: [
@@ -64,12 +65,13 @@ const buisness = [
       email: "restuaflash@gmail.com",
     },
     capital: 5000,
+    dummy: true,
   },
   {
     image: require("../../assets/casino2.jpg"),
     name: "Hotel",
     products: "kitchen, rooms, drinks",
-    Rating: "34",
+    rating: 2,
     rate: "rate",
 
     photos: [
@@ -90,12 +92,13 @@ const buisness = [
       email: "hotelez@gmail.com",
     },
     capital: 5000,
+    dummy: true,
   },
   {
     image: require("../../assets/s1.jpg"),
     name: "Electronics",
     products: "Laptops, fridges, Irons",
-    rating: "34",
+    rating: 3,
     rate: "rate",
     photos: [
       require("../../assets/bed.jpg"),
@@ -115,6 +118,7 @@ const buisness = [
       email: "hotelez@gmail.com",
     },
     capital: 5000,
+    dummy: true,
   },
 ];
 

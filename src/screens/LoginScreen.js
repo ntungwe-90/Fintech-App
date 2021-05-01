@@ -33,7 +33,6 @@ class LoginScreen extends Component {
     this.setState({ loading: true });
     console.log(this.state);
     this.props.loginEmailAccount(this.state.email, this.state.password);
-    this.setState({ loading: false });
   };
 
   render() {

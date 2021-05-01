@@ -14,6 +14,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import { createEmailAccount, registerError } from "../redux/actions";
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 
 const PencilIcon = (
   <MaterialCommunityIcons name="pencil-outline" size={24} color="#aaaaaa" />
@@ -27,6 +29,7 @@ class RegisterScreen extends Component {
       LastName: "",
       email: "",
       password: "",
+      id: uuidv4()
     };
   }
 
@@ -44,7 +47,7 @@ class RegisterScreen extends Component {
     // }
     this.setState({ loading: true });
     console.log("fffffdgrtg");
-    this.props.createEmailAccount(this.state.email, this.state.password);
+    this.props.createEmailAccount(this.state);
   };
 
   render() {
