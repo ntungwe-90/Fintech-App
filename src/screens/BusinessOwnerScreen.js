@@ -27,33 +27,33 @@ function BusinessOwnerScreen({ navigation, ...props }) {
 
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Full name</Text>
-          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>Micheal Jordan</Text>
+          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>Gloria Davis</Text>
         </View>
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Business Name</Text>
           <Text style={{ color: "#a6a6a6", fontSize: 20 }}>
-            Jordan's electronics
+            GLO's boutique
           </Text>
         </View>
 
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Rating</Text>
-          <Text style={{ color: "yellow", fontSize: 20 }}>******</Text>
+          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>0</Text>
         </View>
 
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Location</Text>
-          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>Accra</Text>
+          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>Tesano</Text>
         </View>
 
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Phone</Text>
-          <Text style={{ color: "#a6a6a6", fontSize: 20 }}> +00145668723 </Text>
+          <Text style={{ color: "#a6a6a6", fontSize: 20 }}> 0592286843 </Text>
         </View>
 
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Start Capital</Text>
-          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>50000</Text>
+          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>5000gh</Text>
         </View>
         <View style={styles.nextbutton}>
         <TouchableOpacity

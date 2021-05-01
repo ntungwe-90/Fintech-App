@@ -10,9 +10,11 @@ import {
   Pressable,
   Platform,
   ActivityIndicator,
+  FlatList,
 } from "react-native";
 import { connect } from "react-redux";
 import * as ImagePicker from "expo-image-picker";
+import { Feather } from "@expo/vector-icons";
 import { uploadBusiness } from "../redux/actions";
 
 class UploadBuisness extends Component {
@@ -22,12 +24,15 @@ class UploadBuisness extends Component {
       fullName: "",
       name: "",
       image: require("../../assets/casino2.jpg"),
-      // products: "",
+      products: "",
       rating: 0,
       location: "",
       phone: "",
       startCapital: "",
-      owner: props.user.id
+      owner: props.user.id,
+      businessImages: [
+
+      ]
     };
   }
 
@@ -54,12 +59,23 @@ class UploadBuisness extends Component {
       quality: 1,
     });
 
-    // console.log(result);
-
-    if (!result.cancelled) {
-      this.handleUpdateState("image", { uri: result.uri });
-    }
+    return !result.cancelled ? result : null
   };
+
+  uploadProfilePhoto = async () => {
+    const photo = await this.pickImage();
+    if (photo) {
+      this.handleUpdateState("image", { uri: photo.uri });
+    }
+  }
+
+  uploadBusinessImage = async () => {
+    const image = await this.pickImage();
+    if (image) {
+      this.setState({businessImages: [...this.state.businessImages, image]})
+    }
+  }
+
 
   handleBusinessUpload = () => {
     this.setState({loading: true})
@@ -84,7 +100,7 @@ class UploadBuisness extends Component {
           {/* <Text style={styles.loginText}>Business Info</Text> */}
         </View>
         <View>
-          <Text>profile picture</Text>
+          <Text style={styles.propic}>profile picture</Text>
           <Pressable onPress={this.pickImage}>
             <Image style={styles.image} source={this.state.image} />
           </Pressable>
@@ -110,7 +126,7 @@ class UploadBuisness extends Component {
             }}
           />
 
-          {/* <TextInput
+          <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
             placeholder="products"
@@ -118,7 +134,7 @@ class UploadBuisness extends Component {
             onChangeText={(text) => {
               this.handleUpdateState("products", text);
             }}
-          /> */}
+          />
 
           <TextInput
             style={styles.input}
@@ -142,8 +158,8 @@ class UploadBuisness extends Component {
           <TextInput
             style={styles.input}
             placeholderTextColor="#aaaaaa"
-            placeholder="tell"
-            value={this.state.tell}
+            placeholder="phone"
+            value={this.state.phone}
             onChangeText={(text) => {
               this.handleUpdateState("phone", text);
             }}
@@ -157,6 +173,28 @@ class UploadBuisness extends Component {
               this.handleUpdateState("startCapital", text);
             }}
           />
+
+          <View style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: 20,
+            marginBottom: 10,
+          }}>
+            <Text style={{}}>Business images</Text>
+            <Pressable onPress={this.uploadBusinessImage}>
+              <Feather name="plus" size={24} color="#000"/>
+            </Pressable>
+          </View>
+          {(() => {console.log(this.state.businessImages)})()}
+          {this.state.businessImages ? (
+            <FlatList
+              horizontal={true}
+              data={this.state.businessImages}
+              renderItem={({item}) => <Image source={{uri: item.uri}} style={styles.bizImg}/>}
+              keyExtractor={(item) => item.uri.split('/').pop()}
+            />
+          ) : null}
         </View>
 
         <View style={styles.nextbutton}>
@@ -176,11 +214,11 @@ class UploadBuisness extends Component {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
-    marginVertical: 25,
+    // marginVertical: 5,
   },
   image: {
-    width: 100,
-    height: 80,
+    width: 150,
+    height: 150,
     borderRadius: 80,
   },
   loginText: {
@@ -234,6 +272,12 @@ const styles = StyleSheet.create({
     color: "#3b76ad",
   },
 
+  bizImg: {
+    width: 65 * 1.33,
+    height: 65,
+    marginHorizontal: 10,
+  },
+
   nextbutton: {
     height: 50,
     width: 150,
@@ -250,6 +294,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
   },
+
+  propic:{
+    fontSize:15,
+    fontWeight:"bold"
+  }
 });
 
 export default connect((state) => ({user: state.user}), { uploadBusiness })(UploadBuisness);

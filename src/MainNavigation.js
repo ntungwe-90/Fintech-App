@@ -48,7 +48,7 @@ function MyTabs() {
         component={HomeScreen}
       />
 
-      <Tab.Screen
+      {/* <Tab.Screen
         options={{
           tabBarLabel: "My Products",
           tabBarIcon: ({ color, size }) => (
@@ -58,7 +58,7 @@ function MyTabs() {
         }}
         name="OwnersProduct"
         component={OwnersProduct}
-      />
+      /> */}
 
       <Tab.Screen
         options={{

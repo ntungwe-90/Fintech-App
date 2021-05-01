@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
+  useWindowDimensions
 } from "react-native";
 
 export default function BuisnessDetails1({
@@ -14,48 +15,82 @@ export default function BuisnessDetails1({
   route: { params: props },
 }) {
   const { contact, moreImages } = props;
+  const { width: screenWidth } = useWindowDimensions();
+  console.log(props)
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.container}>
-        <View>
+        {/* <View>
           <Image
             style={styles.image}
             source={require("../../assets/logo.png")}
           />
           <Text style={styles.buisnessName}>{props.name}</Text>
-        </View>
-        <FlatList
-          horizontal={true}
-          contentContainerStyle={styles.photos}
-          data={props.photos}
-          renderItem={({ item }) => (
-            <Image source={item} style={styles.image2} />
-          )}
-          keyExtractor={(_, index) => `${index}`}
-        />
-
-        <View>
-          <Text style={styles.textinfo}>{props.description}</Text>
-          {moreImages?.[0] && (
-            <Image style={styles.image1} source={moreImages[0]} />
-          )}
-          <Text>Proffessional Workers and Air Conditioned Environment</Text>
-          {moreImages?.[1] && (
-            <Image style={styles.image1} source={moreImages[1]} />
-          )}
-        </View>
-
-        <View
-          style={{
-            flex: 1,
-            marginVertical: 15,
-          }}
-        >
-          {contact?.location && <Text>Location: {contact?.location}</Text>}
-          {contact?.tel && <Text>tel: {contact?.tel}</Text>}
-          {contact?.email && <Text>Email: {contact?.email}</Text>}
-          {props.capital && <Text>Start Capital: {props.capital} ghc</Text>}
-        </View>
+        </View> */}
+        <Text style={styles.buisnessName}>{props.name}</Text>
+        {
+          !props.owner ? (
+            <>
+              <FlatList
+                horizontal={true}
+                contentContainerStyle={styles.photos}
+                data={props.photos}
+                renderItem={({ item }) => (
+                  <Image source={item} style={styles.image2} />
+                )}
+                keyExtractor={(_, index) => `${index}`}
+              />
+              {moreImages?.[0] && (
+                <Image style={styles.image1} source={moreImages[0]} />
+              )}
+              <Text>Proffessional Workers and Air Conditioned Environment</Text>
+              {moreImages?.[1] && (
+                <Image style={styles.image1} source={moreImages[1]} />
+              )}
+              <View
+                style={{
+                  flex: 1,
+                  marginVertical: 15,
+                }}
+              >
+                {contact?.location && <Text>Location: {contact?.location}</Text>}
+                {contact?.tel && <Text>tel: {contact?.tel}</Text>}
+                {contact?.email && <Text>Email: {contact?.email}</Text>}
+                {props.capital && <Text>Start Capital: {props.capital} ghc</Text>}
+              </View>
+            </>
+          ) : (
+            <>
+              {/* <Text style={{
+                textAlign: "center",
+                fontSize: 18,
+              }}>{props.name}</Text> */}
+      
+              <View style={{
+                marginBottom: 15,
+              }}>
+                <Text style={styles.title}>Business description</Text>
+                <Text>{props.description || "No description"}</Text>
+              </View>
+      
+              <Text style={styles.title}>Business images</Text>
+              <FlatList
+                data={props.businessImages}
+                renderItem={({item}) => 
+                  <Image 
+                    source={{uri: item.uri}} 
+                    style={{
+                      width: screenWidth * .5 * 1.33,
+                      height: screenWidth * .5 ,
+                      marginVertical: 5
+                    }}
+                  />
+                }
+                keyExtractor={(item) => item.uri.split('/').pop()}
+              />
+            </>
+          )
+        }
         <View style={styles.nextbutton}>
           <TouchableOpacity
             onPress={() => navigation.navigate("BuisnessDetails2")}
@@ -70,8 +105,8 @@ export default function BuisnessDetails1({
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    marginVertical: 20,
+    // alignItems: "center",
+    // marginVertical: 40,
     marginHorizontal: 20,
     paddingBottom: 50,
     justifyContent: "space-around",
@@ -85,6 +120,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginHorizontal: 2,
     borderRadius: 50,
+   
   },
 
   details: {
@@ -103,11 +139,20 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#3b76ad",
     marginVertical: 20,
+    alignSelf:"center"
   },
+
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 7,
+   
+  }, 
 
   photos: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginBottom:15
   },
 
   image2: {
@@ -133,6 +178,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 30,
+    alignSelf: "center",
+    marginTop: 30
     // marginVertical: 50,
     // marginHorizontal:50
   },

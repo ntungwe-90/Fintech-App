@@ -16,7 +16,7 @@ export default function About({ navigation }) {
       <View style={styles.topSection}>
         <Pressable
           style={{
-            backgroundColor: "#ae7a84",
+            // backgroundColor: "#ae7a84",
             paddingVertical: 10,
             paddingHorizontal: 30,
             borderRadius: 5,
@@ -24,9 +24,13 @@ export default function About({ navigation }) {
           }}
           onPress={() => navigation.navigate("LoginScreen")}
         >
-          <Text style={{ color: "#fff" }}>Sign In</Text>
+          {/* <Text style={{ color: "#fff" }}>Sign In</Text> */}
         </Pressable>
-        <Fontisto name="flash" size={34} color="brown" />
+        <Image
+            style={styles.image}
+            source={require("../../assets/logo.png")}
+          />
+        {/* <Fontisto name="flash" size={34} color="brown" /> */}
         {/* <Text>Logo</Text> */}
         {/* <Image style={styles.image} source={require("../../assets/logo.png")} /> */}
       </View>
@@ -39,8 +43,10 @@ export default function About({ navigation }) {
           RATE THEIR SERVICES AND EVEN INVEST IN THEM. */}
           Business Point is a Mobile Application Which Connects Micro-Services
           With Investors. Peole Discover New Exciting Micro Businesses And They
-          Rate Their Services And Even Invest In Them
+          Rate Their Services And Even Invest In Them.
         </Text>
+
+       
       </View>
 
       {/* buttons/bottom section */}
@@ -57,13 +63,13 @@ export default function About({ navigation }) {
           }}
           onPress={() => navigation.navigate("RegisterScreen")}
         >
-          <Text style={{ color: "#fff" }}>Register</Text>
+          <Text style={{ color: "#fff" }}>Upload Business</Text>
         </Pressable>
         <Pressable
           style={styles.rate}
           onPress={() => navigation.navigate("AllBuisness")}
         >
-          <Text>Rate</Text>
+          <Text>Rate Businesses</Text>
         </Pressable>
       </View>
 
@@ -136,10 +142,12 @@ const styles = StyleSheet.create({
   },
 
   image: {
+    marginTop:25,
     alignSelf: "center",
-    width: 100,
+    width: 80,
     height: 80,
     borderRadius: 80,
+    // backgroundColor:"#ae7a84"
   },
 
   info: {
