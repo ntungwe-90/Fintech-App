@@ -31,16 +31,16 @@ function BuisnessDetails2({ navigation, route: { params: props }, updateBusiness
       </View>
 
       <View style={styles.profit}>
-        <Text>Product</Text>
-        <Text>Amount</Text>
+        <Text style={{color:"white",fontSize:15}}>PRODUCT</Text>
+        <Text style={{color:"white",fontSize:15}}>AMOUNT</Text>
         { props.forwarded ? null : <Text>Profits</Text>}
       </View>
       {
         props.forwarded ? (
           props?.products?.map(({name, value}) => (
             <View style={styles.profit}>
-              <Text style={{textTransform: "capitalize"}}>{name}</Text>
-              <Text>{value}</Text>
+              <Text style={{textTransform: "capitalize", color:"white",fontSize:15}}>{name}</Text>
+              <Text style={{color:"white",fontSize:15}}>{value}</Text>
             </View>    
           ))
         ) : (
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     // marginTop: 30,
     height: 25,
-    backgroundColor: "grey",
+    backgroundColor: "#3b76ad",
     fontWeight: "bold",
   },
   total: {
@@ -186,6 +186,7 @@ const styles = StyleSheet.create({
   Text: {
     fontSize: 15,
     fontWeight: "bold",
+    
   },
   donation: {
     alignSelf: "center",
