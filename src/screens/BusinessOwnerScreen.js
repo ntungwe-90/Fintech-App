@@ -27,12 +27,12 @@ function BusinessOwnerScreen({ navigation, ...props }) {
 
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Full name</Text>
-          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>Gloria Davis</Text>
+          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>Comfort Asiamah</Text>
         </View>
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Business Name</Text>
           <Text style={{ color: "#a6a6a6", fontSize: 20 }}>
-            GLO's boutique
+            Glow Fashion
           </Text>
         </View>
 

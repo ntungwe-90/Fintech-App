@@ -63,13 +63,13 @@ export default function About({ navigation }) {
           }}
           onPress={() => navigation.navigate("RegisterScreen")}
         >
-          <Text style={{ color: "#fff" }}>Upload Business</Text>
+          <Text style={{ color: "#fff" }}>create Business Profile</Text>
         </Pressable>
         <Pressable
           style={styles.rate}
           onPress={() => navigation.navigate("AllBuisness")}
         >
-          <Text>Rate Businesses</Text>
+          <Text>Discover Businesses</Text>
         </Pressable>
       </View>
 

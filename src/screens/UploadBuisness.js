@@ -25,7 +25,7 @@ class UploadBuisness extends Component {
       id: uuidV4(),
       fullName: "",
       name: "",
-      image: require("../../assets/casino2.jpg"),
+      image: require("../../assets/suit.jpg"),
       products: [
         // {name: "", value: 0},
         {}
