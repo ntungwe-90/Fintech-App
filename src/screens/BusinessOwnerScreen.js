@@ -21,18 +21,18 @@ function BusinessOwnerScreen({ navigation, ...props }) {
           <Text style={styles.header}>MY BUSINESS</Text>
           <Image
             style={styles.image}
-            source={require("../../assets/suit.jpg")}
+            source={require("../../assets/glowfashion.jpg")}
           />
         </View>
 
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Full name</Text>
-          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>Gloria Davis</Text>
+          <Text style={{ color: "#a6a6a6", fontSize: 20 }}>Comfort Asiamah</Text>
         </View>
         <View style={styles.labelInfo}>
           <Text style={{ color: "#3b76ad" }}>Business Name</Text>
           <Text style={{ color: "#a6a6a6", fontSize: 20 }}>
-            GLO's boutique
+            Glow Fashion
           </Text>
         </View>
 
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 150,
-    height: 150,
+    height: 140,
     borderRadius: 80,
     alignSelf: "center",
   },
