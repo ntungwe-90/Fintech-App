@@ -21,7 +21,7 @@ function BusinessOwnerScreen({ navigation, ...props }) {
           <Text style={styles.header}>MY BUSINESS</Text>
           <Image
             style={styles.image}
-            source={require("../../assets/suit.jpg")}
+            source={require("../../assets/glowfashion.jpg")}
           />
         </View>
 
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 150,
-    height: 150,
+    height: 140,
     borderRadius: 80,
     alignSelf: "center",
   },
